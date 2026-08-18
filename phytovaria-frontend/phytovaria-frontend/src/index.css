@@ -34,11 +34,43 @@
   --color-risk-unknown: #5b6660;
   --color-risk-unknown-bg: #eceeec;
 
-  /* Nucleotide accent hues, used only by the GenomicTrack motif */
+  /* Nucleotide accent hues */
   --color-base-a: #4c46a6;
   --color-base-t: #1f8a5f;
   --color-base-c: #b8721e;
   --color-base-g: #a9463a;
+}
+
+.dark {
+  --color-bg: #0d1210;
+  --color-surface: #141c19;
+  --color-surface-alt: #1c2622;
+  --color-ink: #eef2ec;
+  --color-ink-muted: #95a39c;
+  --color-border: #2c3833;
+
+  --color-primary: #348265;
+  --color-primary-dark: #27624c;
+  --color-primary-light: #163a2e;
+
+  --color-accent: #7873c9;
+  --color-accent-light: #2d2a5a;
+
+  /* Risk semantics */
+  --color-risk-low: #45b386;
+  --color-risk-low-bg: #163a2e;
+  --color-risk-medium: #e09945;
+  --color-risk-medium-bg: #4d310e;
+  --color-risk-high: #d16e62;
+  --color-risk-high-bg: #4a1f1a;
+  --color-risk-unknown: #95a39c;
+  --color-risk-unknown-bg: #2c3833;
+
+  /* Nucleotide accent hues */
+  --color-base-a: #7873c9;
+  --color-base-t: #45b386;
+  --color-base-c: #e09945;
+  --color-base-g: #d16e62;
 }
 
 html,

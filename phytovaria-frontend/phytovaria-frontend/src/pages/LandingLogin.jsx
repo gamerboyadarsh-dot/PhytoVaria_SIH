@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Dna, Leaf, ShieldCheck, Cpu } from "lucide-react";
+import { Leaf, ShieldCheck, Cpu } from "lucide-react";
 import Button from "../components/ui/Button.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
 import GenomicTrack from "../components/ui/GenomicTrack.jsx";
+import PhytovariaLogo from "../components/ui/PhytovariaLogo.jsx";
 
 const heroVariants = [
   { id: "h1", position: 100, alt: "A", evidenceLevel: "curated" },
@@ -34,12 +35,11 @@ export default function LandingLogin() {
     <div className="min-h-screen grid lg:grid-cols-2 bg-bg">
       {/* Left: brand / thesis panel */}
       <div className="hidden lg:flex flex-col justify-between bg-primary text-white p-12 relative overflow-hidden">
-        <div className="flex items-center gap-2">
-          <div className="h-9 w-9 rounded-md bg-white/15 flex items-center justify-center">
-            <Dna size={18} strokeWidth={2.25} />
-          </div>
-          <span className="font-display font-semibold tracking-tight text-lg">PhytoVaria</span>
-        </div>
+        <PhytovariaLogo 
+          variant="full" 
+          iconClassName="text-white text-2xl drop-shadow-md" 
+          textClassName="text-white text-xl" 
+        />
 
         <div className="max-w-md">
           <p className="text-sm uppercase tracking-widest text-white/60 mb-4">Genomic Intelligence for Healthier Crops</p>
@@ -64,17 +64,14 @@ export default function LandingLogin() {
           </ul>
         </div>
 
-        <p className="text-xs text-white/40">Smart India Hackathon prototype — not a diagnostic product.</p>
+        <p className="text-xs text-white/40">PhytoVaria is a research tool — not a certified diagnostic product.</p>
       </div>
 
       {/* Right: auth form */}
       <div className="flex items-center justify-center p-6 sm:p-12">
         <div className="w-full max-w-sm">
-          <div className="lg:hidden flex items-center gap-2 mb-8">
-            <div className="h-8 w-8 rounded-md bg-primary flex items-center justify-center">
-              <Dna size={16} className="text-white" />
-            </div>
-            <span className="font-display font-semibold text-ink">PhytoVaria</span>
+          <div className="lg:hidden mb-8">
+            <PhytovariaLogo variant="full" iconClassName="text-primary text-2xl" textClassName="text-xl" />
           </div>
 
           <h2 className="font-display text-2xl font-semibold text-ink">Sign in</h2>
@@ -116,7 +113,7 @@ export default function LandingLogin() {
             </Button>
 
             <p className="text-xs text-ink-muted text-center pt-2">
-              Prototype build — any credentials work until Member 2's auth endpoint is connected.
+              Please sign in using your provided field researcher credentials.
             </p>
           </form>
         </div>

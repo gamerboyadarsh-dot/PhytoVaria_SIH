@@ -1,12 +1,14 @@
-import { FlaskConical, ChevronDown, LogOut } from "lucide-react";
+import { FlaskConical, ChevronDown, LogOut, Sun, Moon } from "lucide-react";
 import { useDemoMode } from "../../context/DemoModeContext.jsx";
 import { usePlantContext } from "../../context/PlantContext.jsx";
 import { useAuth } from "../../context/AuthContext.jsx";
+import { useTheme } from "../../context/ThemeContext.jsx";
 
 export default function Topbar({ title }) {
   const { demoMode, toggleDemoMode } = useDemoMode();
   const { plants, selectedPlantId, setSelectedPlantId } = usePlantContext();
   const { user, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <header className="h-16 border-b border-border bg-surface/80 backdrop-blur-md sticky top-0 z-10 flex items-center justify-between px-4 md:px-8 gap-4 shadow-[0_1px_3px_rgba(20,33,27,0.03)]">
@@ -43,6 +45,14 @@ export default function Topbar({ title }) {
         >
           <FlaskConical size={13} />
           {demoMode ? "Demo Mode" : "Live"}
+        </button>
+
+        <button
+          onClick={toggleTheme}
+          title="Toggle light/dark theme"
+          className="p-1.5 rounded-full text-ink-muted hover:bg-surface-alt transition-colors"
+        >
+          {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
         </button>
 
         {user && (

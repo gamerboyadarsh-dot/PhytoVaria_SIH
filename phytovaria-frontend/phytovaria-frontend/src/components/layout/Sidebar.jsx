@@ -10,6 +10,7 @@ import {
   Lightbulb,
   FileText,
 } from "lucide-react";
+import PhytovariaLogo from "../ui/PhytovariaLogo.jsx";
 
 const nav = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -26,10 +27,7 @@ export default function Sidebar() {
   return (
     <aside className="hidden md:flex md:flex-col w-64 shrink-0 border-r border-border bg-surface h-screen sticky top-0">
       <div className="flex items-center gap-2 px-6 h-16 border-b border-border bg-surface/50 backdrop-blur-md">
-        <div className="h-8 w-8 rounded-md bg-primary flex items-center justify-center shadow-[0_0_12px_rgba(31,77,61,0.4)]">
-          <Dna size={17} className="text-white" strokeWidth={2.25} />
-        </div>
-        <span className="font-display font-semibold text-ink tracking-tight">PhytoVaria</span>
+        <PhytovariaLogo variant="full" iconClassName="text-primary text-xl" />
       </div>
 
       <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-0.5">
@@ -55,7 +53,7 @@ export default function Sidebar() {
       <div className="px-4 py-4 border-t border-border">
         <div className="text-[11px] leading-relaxed text-ink-muted selection:bg-accent-light">
           <p className="font-medium text-ink/70">Genomic Intelligence for Healthier Crops.</p>
-          <p className="opacity-70 mt-0.5">Prototype build — SIH Hackathon.</p>
+          <p className="opacity-70 mt-0.5">v1.0.0 Production Build</p>
         </div>
       </div>
     </aside>
