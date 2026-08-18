@@ -1,0 +1,15 @@
+##fileformat=VCFv4.2
+##fileDate=20260818
+##source=PhytoVaria_EdgeCase_Tester
+##reference=Solanum_lycopersicum_SL4.0
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Total Depth">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Read depth">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	EDGE_TEST_SAMPLE
+chr6	30812450	rs_ty1_alias	C	T	99.0	PASS	DP=40	GT:DP	1/1:40
+9	2408520	rs_tm22_alias	G	A	.	PASS	DP=30	GT:DP	0/1:30
+ch11	51208310	rs_i2_alias	A	G	80.0	PASS	DP=25	GT:DP	1/1:25
+SL4.0ch04	3809120	rs_mlo_multi	G	T,C	90.0	PASS	DP=50	GT:DP	1/2:50
+SL4.0ch01	5000000	indel_test_01	ATTT	A	75.0	PASS	DP=20	GT:DP	0/1:20
+SL4.0ch02	8000000	lowqual_test	C	T	12.0	LowQual	DP=5	GT:DP	0/1:5
+SL4.0ch03	9000000	nocall_test	G	A	99.0	PASS	DP=0	GT:DP	./.:0

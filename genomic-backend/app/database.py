@@ -1,18 +1,24 @@
 """
 Database setup using SQLModel (SQLAlchemy + Pydantic combined).
-Using SQLite for now — switch DATABASE_URL to a Postgres URL later
-(e.g. "postgresql://user:pass@host/dbname") with zero other code changes.
+DATABASE_URL can be overridden via environment variable for production (PostgreSQL).
 """
+import os
 from sqlmodel import SQLModel, create_engine, Session
 
-DATABASE_URL = "sqlite:///./genomic_app.db"
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./phytovaria.db")
 
 # check_same_thread=False is only needed for SQLite
-engine = create_engine(DATABASE_URL, echo=True, connect_args={"check_same_thread": False})
+connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
+
+engine = create_engine(
+    DATABASE_URL,
+    echo=os.getenv("DB_ECHO", "false").lower() == "true",
+    connect_args=connect_args,
+)
 
 
 def create_db_and_tables():
-    """Call this once on app startup to create all tables from models.py"""
+    """Call once on app startup to create all tables defined in models.py"""
     SQLModel.metadata.create_all(engine)
 
 

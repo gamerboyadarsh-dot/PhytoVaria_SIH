@@ -1,0 +1,30 @@
+##fileformat=VCFv4.2
+##fileDate=20260818
+##source=PhytoVaria_Genomics_Simulator_SL4
+##reference=Solanum_lycopersicum_SL4.0
+##contig=<ID=SL4.0ch01,length=98433973>
+##contig=<ID=SL4.0ch04,length=68900492>
+##contig=<ID=SL4.0ch05,length=68023471>
+##contig=<ID=SL4.0ch06,length=49432654>
+##contig=<ID=SL4.0ch09,length=72549271>
+##contig=<ID=SL4.0ch10,length=67451293>
+##contig=<ID=SL4.0ch11,length=56728341>
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Total Depth">
+##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Allelic depths for the ref and alt alleles">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Approximate read depth">
+##FORMAT=<ID=GQ,Number=1,Type=Integer,Description="Genotype Quality">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	FIELD_ISOLATE_TOMATO_03
+SL4.0ch09	2408520	rs_tm22_01	G	A	99.0	PASS	DP=52;AF=0.5	GT:AD:DP:GQ	0/1:26,26:52:99
+SL4.0ch06	30812450	rs_ty1_01	C	T	99.0	PASS	DP=48;AF=0.5	GT:AD:DP:GQ	0/1:24,24:48:99
+SL4.0ch11	51208310	rs_i2_01	A	G	99.0	PASS	DP=60;AF=1.0	GT:AD:DP:GQ	1/1:0,60:60:99
+SL4.0ch09	1605420	rs_ve1_01	C	T	99.0	PASS	DP=45;AF=0.5	GT:AD:DP:GQ	0/1:22,23:45:99
+SL4.0ch05	8412190	rs_pto_01	G	C	99.0	PASS	DP=55;AF=1.0	GT:AD:DP:GQ	1/1:0,55:55:99
+SL4.0ch09	68515640	rs_ph3_01	T	T	99.0	PASS	DP=40;AF=0.0	GT:AD:DP:GQ	0/0:40,0:40:99
+SL4.0ch04	3809120	rs_mlo_01	G	A	85.0	PASS	DP=35;AF=1.0	GT:AD:DP:GQ	1/1:0,35:35:85
+SL4.0ch01	9540120	.	A	T	90.0	PASS	DP=30;AF=1.0	GT:AD:DP:GQ	1/1:0,30:30:90
+SL4.0ch02	18420910	.	C	G	95.0	PASS	DP=38;AF=0.5	GT:AD:DP:GQ	0/1:19,19:38:95
+SL4.0ch03	32190450	.	T	A	92.0	PASS	DP=40;AF=1.0	GT:AD:DP:GQ	1/1:0,40:40:92
+SL4.0ch07	14209800	.	G	C	99.0	PASS	DP=44;AF=0.5	GT:AD:DP:GQ	0/1:22,22:44:99
+SL4.0ch12	11048200	.	A	G	88.0	PASS	DP=32;AF=1.0	GT:AD:DP:GQ	1/1:0,32:32:88

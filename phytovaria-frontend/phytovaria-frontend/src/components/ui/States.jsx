@@ -12,8 +12,8 @@ export function LoadingState({ label = "Loading" }) {
 
 export function EmptyState({ icon: Icon = Inbox, title, description, action }) {
   return (
-    <div className="flex flex-col items-center justify-center text-center py-16 px-6">
-      <div className="h-12 w-12 rounded-full bg-surface-alt flex items-center justify-center text-ink-muted mb-4">
+    <div className="flex flex-col items-center justify-center text-center py-16 px-6 animate-fade-in-up">
+      <div className="h-12 w-12 rounded-full bg-surface-alt flex items-center justify-center text-ink-muted mb-4 shadow-sm animate-pulse-slow">
         <Icon size={22} strokeWidth={1.75} />
       </div>
       <p className="font-display font-semibold text-ink">{title}</p>
@@ -25,8 +25,8 @@ export function EmptyState({ icon: Icon = Inbox, title, description, action }) {
 
 export function ErrorState({ title = "Something went wrong", description, onRetry }) {
   return (
-    <div className="flex flex-col items-center justify-center text-center py-16 px-6">
-      <div className="h-12 w-12 rounded-full bg-risk-high-bg flex items-center justify-center text-risk-high mb-4">
+    <div className="flex flex-col items-center justify-center text-center py-16 px-6 animate-fade-in-up">
+      <div className="h-12 w-12 rounded-full bg-risk-high-bg flex items-center justify-center text-risk-high mb-4 shadow-sm">
         <AlertOctagon size={22} strokeWidth={1.75} />
       </div>
       <p className="font-display font-semibold text-ink">{title}</p>

@@ -1,9 +1,9 @@
 import Card from "./Card.jsx";
 import clsx from "clsx";
 
-export default function StatCard({ label, value, unit, icon: Icon, trend, tone = "primary" }) {
+export default function StatCard({ label, value, unit, icon: Icon, trend, tone = "primary", delay }) {
   return (
-    <Card className="flex items-start justify-between">
+    <Card className={clsx("flex items-start justify-between", delay)}>
       <div>
         <p className="text-sm text-ink-muted">{label}</p>
         <p className="font-display text-3xl font-semibold text-ink mt-2">

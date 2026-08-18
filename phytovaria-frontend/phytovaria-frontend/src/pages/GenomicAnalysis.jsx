@@ -9,7 +9,15 @@ import { LoadingState, ErrorState, EmptyState } from "../components/ui/States.js
 import { usePlantContext } from "../context/PlantContext.jsx";
 import { useApi } from "../api/useApi.js";
 
-const evidenceTone = { curated: "Low", limited: "Medium", unknown: "Unknown" };
+// Map real API evidence_level → badge label
+function evidenceBadge(level, matchStatus) {
+  if (matchStatus === "EXACT_MATCH") {
+    if (level === "LEVEL_1_DEFINITIVE" || level === "LEVEL_2_MODERATE") return "Low";
+    return "Medium";
+  }
+  if (matchStatus === "NOVEL_ALLELE_AT_LOCUS") return "Medium";
+  return "Unknown";
+}
 
 export default function GenomicAnalysis() {
   return (
@@ -74,14 +82,49 @@ function AnalysisBody() {
         </div>
         <DataTable
           columns={[
-            { key: "position", header: "Position", mono: true, render: (r) => `${r.chromosome}:${r.position.toLocaleString()}` },
-            { key: "change", header: "Change", mono: true, render: (r) => `${r.ref} → ${r.alt}` },
-            { key: "gene", header: "Gene", mono: true },
-            { key: "consequence", header: "Consequence" },
+            {
+              key: "position",
+              header: "Position",
+              mono: true,
+              render: (r) => `${r.chrom ?? r.chromosome ?? "?"}:${(r.pos ?? r.position ?? 0).toLocaleString()}`,
+            },
+            {
+              key: "change",
+              header: "Change",
+              mono: true,
+              render: (r) => `${r.ref} → ${r.alt}`,
+            },
+            {
+              key: "gene",
+              header: "Gene",
+              mono: true,
+              render: (r) => r.gene_symbol ?? r.gene ?? "—",
+            },
+            {
+              key: "consequence",
+              header: "Consequence",
+              render: (r) => (r.consequence ?? "").replace(/_/g, " ") || "—",
+            },
+            {
+              key: "classification",
+              header: "Classification",
+              render: (r) => {
+                const cls = r.allele_classification ?? "";
+                if (cls === "RESISTANT_ALLELE") return <span className="text-xs font-medium text-green-700">Resistant</span>;
+                if (cls === "SUSCEPTIBLE_ALLELE") return <span className="text-xs font-medium text-red-600">Susceptible</span>;
+                return <span className="text-xs text-ink-muted">Unknown</span>;
+              },
+            },
             {
               key: "evidenceLevel",
               header: "Evidence",
-              render: (r) => <RiskBadge label={evidenceTone[r.evidenceLevel]} size="sm" showIcon={false} />,
+              render: (r) => (
+                <RiskBadge
+                  label={evidenceBadge(r.evidence_level ?? r.evidenceLevel, r.match_status)}
+                  size="sm"
+                  showIcon={false}
+                />
+              ),
             },
           ]}
           rows={variants}

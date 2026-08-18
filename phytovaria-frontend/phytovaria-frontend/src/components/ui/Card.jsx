@@ -4,8 +4,8 @@ export default function Card({ className, padded = true, hover = false, children
   return (
     <div
       className={clsx(
-        "bg-surface border border-border rounded-card shadow-card",
-        hover && "transition-shadow duration-200 hover:shadow-card-hover",
+        "bg-surface border border-border rounded-card shadow-card animate-fade-in-up",
+        hover && "transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 hover:border-primary/20",
         padded && "p-6",
         className
       )}

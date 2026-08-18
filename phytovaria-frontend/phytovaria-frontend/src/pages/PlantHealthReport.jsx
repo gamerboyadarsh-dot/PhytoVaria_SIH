@@ -16,6 +16,29 @@ export default function PlantHealthReport() {
   );
 }
 
+function normalizeRisk(risk) {
+  if (!risk) return null;
+  const overallLabel =
+    risk.overallLabel ||
+    (risk.risk_level === "high" ? "High" : risk.risk_level === "moderate" ? "Medium" : "Low");
+  const traitScores =
+    risk.traitScores ||
+    (risk.disease_scores || []).map((ds) => ({
+      trait: ds.disease,
+      score: ds.risk_score / 100,
+      label: ds.risk_level === "high" ? "High" : ds.risk_level === "moderate" ? "Medium" : "Low",
+      confidence: ds.confidence || "Low",
+    }));
+
+  return {
+    ...risk,
+    overallLabel,
+    traitScores,
+    confidence: risk.confidence || "Moderate",
+    method: risk.method || "rule_based",
+  };
+}
+
 function ReportBody() {
   const { selectedPlant, selectedPlantId } = usePlantContext();
   const api = useApi();
@@ -27,7 +50,7 @@ function ReportBody() {
     if (!selectedPlantId) return;
     setError(null);
     Promise.all([api.getReport(selectedPlantId), api.getRiskAssessment(selectedPlantId)])
-      .then(([r, k]) => { setReport(r); setRisk(k); })
+      .then(([r, k]) => { setReport(r); setRisk(normalizeRisk(k)); })
       .catch((e) => setError(e.message));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPlantId]);
@@ -43,7 +66,7 @@ function ReportBody() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="font-display text-xl font-semibold text-ink">{selectedPlant?.name}</h2>
-          <p className="text-sm text-ink-muted">Generated {new Date(report.generatedAt).toLocaleString()}</p>
+          <p className="text-sm text-ink-muted">Generated {new Date(report.generated_at || report.generatedAt).toLocaleString()}</p>
         </div>
         <Button variant="secondary" icon={Printer} onClick={() => window.print()}>
           Print / Save PDF
@@ -51,8 +74,25 @@ function ReportBody() {
       </div>
 
       <Card>
-        <CardHeader title="Summary" />
-        <p className="text-sm text-ink-muted leading-relaxed">{report.summary}</p>
+        <CardHeader title="Methodology & Summary" />
+        <p className="text-sm text-ink-muted leading-relaxed mb-4">{report.methodology || report.summary || "End-to-end genomic and environmental assessment."}</p>
+        
+        {report.variant_summary && (
+          <div className="bg-surface-alt rounded-lg p-4 grid grid-cols-3 gap-4 text-center mt-2">
+            <div>
+              <p className="text-xl font-bold text-ink">{report.variant_summary.total}</p>
+              <p className="text-xs text-ink-muted">Total variants</p>
+            </div>
+            <div>
+              <p className="text-xl font-bold text-ink">{report.variant_summary.exact_matches}</p>
+              <p className="text-xs text-ink-muted">KB matches</p>
+            </div>
+            <div>
+              <p className="text-xl font-bold text-ink">{report.variant_summary.unknown}</p>
+              <p className="text-xs text-ink-muted">Insufficient evidence</p>
+            </div>
+          </div>
+        )}
       </Card>
 
       <Card className="flex items-center justify-between flex-wrap gap-4">
@@ -60,7 +100,7 @@ function ReportBody() {
           <p className="text-sm text-ink-muted">Overall susceptibility</p>
           <div className="mt-2"><RiskBadge label={risk.overallLabel} /></div>
         </div>
-        <p className="text-xs text-ink-muted">Confidence: {risk.confidence} · Method: {risk.method === "ml_demo" ? "Demo ML pipeline" : "Rule-based"}</p>
+        <p className="text-xs text-ink-muted text-right">Confidence: {risk.confidence} <br/> Method: {risk.method === "ml_demo" ? "Demo ML pipeline" : risk.method?.includes("ml") ? "Rule-based + ML" : "Rule-based"}</p>
       </Card>
 
       <Card padded={false}>

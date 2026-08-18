@@ -1,0 +1,31 @@
+##fileformat=VCFv4.2
+##fileDate=20260818
+##source=PhytoVaria_Genomics_Simulator_SL4
+##reference=Solanum_lycopersicum_SL4.0
+##contig=<ID=SL4.0ch01,length=98433973>
+##contig=<ID=SL4.0ch04,length=68900492>
+##contig=<ID=SL4.0ch05,length=68023471>
+##contig=<ID=SL4.0ch06,length=49432654>
+##contig=<ID=SL4.0ch09,length=72549271>
+##contig=<ID=SL4.0ch10,length=67451293>
+##contig=<ID=SL4.0ch11,length=56728341>
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Total Depth">
+##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Allelic depths for the ref and alt alleles">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Approximate read depth">
+##FORMAT=<ID=GQ,Number=1,Type=Integer,Description="Genotype Quality">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	RESISTANT_HYBRID_SAMPLE_01
+SL4.0ch01	1214800	rs_cf9_01	C	A	99.0	PASS	DP=45;AF=1.0	GT:AD:DP:GQ	1/1:0,45:45:99
+SL4.0ch04	3809120	rs_mlo_01	G	T	99.0	PASS	DP=50;AF=1.0	GT:AD:DP:GQ	1/1:0,50:50:99
+SL4.0ch05	8412190	rs_pto_01	G	C	99.0	PASS	DP=60;AF=1.0	GT:AD:DP:GQ	1/1:0,60:60:99
+SL4.0ch06	2710340	rs_mi12_01	T	C	99.0	PASS	DP=40;AF=1.0	GT:AD:DP:GQ	1/1:0,40:40:99
+SL4.0ch06	30812450	rs_ty1_01	C	T	99.0	PASS	DP=55;AF=1.0	GT:AD:DP:GQ	1/1:0,55:55:99
+SL4.0ch09	1605420	rs_ve1_01	C	C	99.0	PASS	DP=52;AF=0.0	GT:AD:DP:GQ	0/0:52,0:52:99
+SL4.0ch09	2408520	rs_tm22_01	G	A	99.0	PASS	DP=65;AF=1.0	GT:AD:DP:GQ	1/1:0,65:65:99
+SL4.0ch09	68515640	rs_ph3_01	T	C	99.0	PASS	DP=48;AF=1.0	GT:AD:DP:GQ	1/1:0,48:48:99
+SL4.0ch09	72210500	rs_sw5b_01	A	G	99.0	PASS	DP=58;AF=1.0	GT:AD:DP:GQ	1/1:0,58:58:99
+SL4.0ch10	59104220	rs_glk2_01	G	A	99.0	PASS	DP=42;AF=1.0	GT:AD:DP:GQ	1/1:0,42:42:99
+SL4.0ch11	51208310	rs_i2_01	A	G	99.0	PASS	DP=70;AF=1.0	GT:AD:DP:GQ	1/1:0,70:70:99
+SL4.0ch02	15420910	.	A	G	99.0	PASS	DP=30;AF=1.0	GT:AD:DP:GQ	1/1:0,30:30:99
+SL4.0ch03	45120800	.	C	T	99.0	PASS	DP=35;AF=0.5	GT:AD:DP:GQ	0/1:18,17:35:99

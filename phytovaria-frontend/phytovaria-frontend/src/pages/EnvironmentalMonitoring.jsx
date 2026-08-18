@@ -37,18 +37,25 @@ function MonitoringBody() {
   if (error) return <ErrorState description={error} />;
   if (!readings) return <LoadingState label="Reading sensor data" />;
 
-  const latest = readings[readings.length - 1];
-  const chartData = readings.map((r) => ({
-    time: new Date(r.timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-    Temperature: Number(r.temperatureC.toFixed(1)),
-    Humidity: Number(r.humidityPct.toFixed(1)),
+  // Real API returns DESC order (newest first); mock is ASC — normalize
+  const sorted = [...readings].sort(
+    (a, b) => new Date(a.recorded_at || a.timestamp) - new Date(b.recorded_at || b.timestamp)
+  );
+  const latest = sorted[sorted.length - 1] || readings[0];
+  const temp = latest.temperature ?? latest.temperatureC ?? 0;
+  const hum = latest.humidity ?? latest.humidityPct ?? 0;
+
+  const chartData = sorted.map((r) => ({
+    time: new Date(r.recorded_at || r.timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+    Temperature: Number((r.temperature ?? r.temperatureC ?? 0).toFixed(1)),
+    Humidity: Number((r.humidity ?? r.humidityPct ?? 0).toFixed(1)),
   }));
 
   return (
     <div className="space-y-6">
       <div className="grid sm:grid-cols-3 gap-4">
-        <StatCard label="Temperature" value={latest.temperatureC.toFixed(1)} unit="°C" icon={Thermometer} />
-        <StatCard label="Humidity" value={latest.humidityPct.toFixed(0)} unit="%" icon={Droplets} tone="accent" />
+        <StatCard label="Temperature" value={temp.toFixed(1)} unit="°C" icon={Thermometer} />
+        <StatCard label="Humidity" value={hum.toFixed(0)} unit="%" icon={Droplets} tone="accent" />
         <StatCard
           label="Sensor source"
           value={demoMode ? "Demo Sensor Mode" : latest.source === "esp32" ? "ESP32 (live)" : "Demo fallback"}

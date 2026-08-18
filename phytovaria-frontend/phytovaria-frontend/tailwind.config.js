@@ -45,8 +45,28 @@ export default {
         card: "14px",
       },
       boxShadow: {
-        card: "0 1px 2px rgba(20, 33, 27, 0.04), 0 4px 16px rgba(20, 33, 27, 0.05)",
-        "card-hover": "0 4px 10px rgba(20, 33, 27, 0.07), 0 12px 28px rgba(20, 33, 27, 0.08)",
+        card: "0 1px 3px rgba(20, 33, 27, 0.05), 0 8px 24px rgba(20, 33, 27, 0.04)",
+        "card-hover": "0 4px 12px rgba(20, 33, 27, 0.06), 0 16px 32px rgba(20, 33, 27, 0.08)",
+        "nav-active": "inset 3px 0 0 var(--color-primary)",
+      },
+      keyframes: {
+        "fade-in-up": {
+          "0%": { opacity: 0, transform: "translateY(12px)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
+        },
+        "fade-in": {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+        "pulse-slow": {
+          "0%, 100%": { opacity: 1 },
+          "50%": { opacity: 0.6 },
+        }
+      },
+      animation: {
+        "fade-in-up": "fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "fade-in": "fade-in 0.4s ease-out forwards",
+        "pulse-slow": "pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
     },
   },
