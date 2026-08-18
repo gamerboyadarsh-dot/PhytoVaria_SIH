@@ -76,7 +76,7 @@ function AnalysisBody() {
         </div>
       </Card>
 
-      <Card padded={false}>
+      <Card padded={false} glass={false}>
         <div className="p-6 pb-0">
           <CardHeader title="Variant calls" subtitle="Matched against the curated genomic knowledge base" />
         </div>

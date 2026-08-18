@@ -25,8 +25,8 @@ const nav = [
 
 export default function Sidebar() {
   return (
-    <aside className="hidden md:flex md:flex-col w-64 shrink-0 border-r border-border bg-surface h-screen sticky top-0">
-      <div className="flex items-center gap-2 px-6 h-16 border-b border-border bg-surface/50 backdrop-blur-md">
+    <aside className="hidden md:flex md:flex-col w-64 shrink-0 glass-panel h-[calc(100vh-2rem)] sticky top-4 ml-4 z-20">
+      <div className="flex items-center gap-2 px-6 h-16 border-b border-border/40">
         <PhytovariaLogo variant="full" iconClassName="text-primary text-xl" />
       </div>
 
@@ -50,7 +50,7 @@ export default function Sidebar() {
         ))}
       </nav>
 
-      <div className="px-4 py-4 border-t border-border">
+      <div className="px-4 py-4 border-t border-border/40">
         <div className="text-[11px] leading-relaxed text-ink-muted selection:bg-accent-light">
           <p className="font-medium text-ink/70">Genomic Intelligence for Healthier Crops.</p>
           <p className="opacity-70 mt-0.5">v1.0.0 Production Build</p>

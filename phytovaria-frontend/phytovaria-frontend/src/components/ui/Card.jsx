@@ -1,11 +1,12 @@
 import clsx from "clsx";
 
-export default function Card({ className, padded = true, hover = false, children, ...props }) {
+export default function Card({ className, padded = true, hover = false, glass = true, children, ...props }) {
   return (
     <div
       className={clsx(
-        "bg-surface border border-border rounded-card shadow-card animate-fade-in-up",
-        hover && "transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 hover:border-primary/20",
+        "animate-fade-in-up",
+        glass ? "glass-panel" : "bg-surface border border-border rounded-card shadow-card",
+        hover && "transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover active:scale-[0.99]",
         padded && "p-6",
         className
       )}

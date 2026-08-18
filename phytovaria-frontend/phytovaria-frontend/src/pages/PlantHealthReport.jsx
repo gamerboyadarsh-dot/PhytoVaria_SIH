@@ -73,29 +73,29 @@ function ReportBody() {
         </Button>
       </div>
 
-      <Card>
+      <Card glass={false}>
         <CardHeader title="Methodology & Summary" />
         <p className="text-sm text-ink-muted leading-relaxed mb-4">{report.methodology || report.summary || "End-to-end genomic and environmental assessment."}</p>
         
         {report.variant_summary && (
           <div className="bg-surface-alt rounded-lg p-4 grid grid-cols-3 gap-4 text-center mt-2">
             <div>
-              <p className="text-xl font-bold text-ink">{report.variant_summary.total}</p>
-              <p className="text-xs text-ink-muted">Total variants</p>
+               <p className="text-xl font-bold text-ink">{report.variant_summary.total}</p>
+               <p className="text-xs text-ink-muted">Total variants</p>
             </div>
             <div>
-              <p className="text-xl font-bold text-ink">{report.variant_summary.exact_matches}</p>
-              <p className="text-xs text-ink-muted">KB matches</p>
+               <p className="text-xl font-bold text-ink">{report.variant_summary.exact_matches}</p>
+               <p className="text-xs text-ink-muted">KB matches</p>
             </div>
             <div>
-              <p className="text-xl font-bold text-ink">{report.variant_summary.unknown}</p>
-              <p className="text-xs text-ink-muted">Insufficient evidence</p>
+               <p className="text-xl font-bold text-ink">{report.variant_summary.unknown}</p>
+               <p className="text-xs text-ink-muted">Insufficient evidence</p>
             </div>
           </div>
         )}
       </Card>
 
-      <Card className="flex items-center justify-between flex-wrap gap-4">
+      <Card glass={false} className="flex items-center justify-between flex-wrap gap-4">
         <div>
           <p className="text-sm text-ink-muted">Overall susceptibility</p>
           <div className="mt-2"><RiskBadge label={risk.overallLabel} /></div>
@@ -103,7 +103,7 @@ function ReportBody() {
         <p className="text-xs text-ink-muted text-right">Confidence: {risk.confidence} <br/> Method: {risk.method === "ml_demo" ? "Demo ML pipeline" : risk.method?.includes("ml") ? "Rule-based + ML" : "Rule-based"}</p>
       </Card>
 
-      <Card padded={false}>
+      <Card padded={false} glass={false}>
         <div className="p-6 pb-0">
           <CardHeader title="Trait-level scores" />
         </div>
@@ -118,7 +118,7 @@ function ReportBody() {
       </Card>
 
       <p className="text-xs text-ink-muted text-center">
-        This report is a hackathon prototype output. It is not a validated agronomic or diagnostic recommendation.
+        This report is generated for research purposes. It is not a validated agronomic or diagnostic recommendation.
       </p>
     </div>
   );

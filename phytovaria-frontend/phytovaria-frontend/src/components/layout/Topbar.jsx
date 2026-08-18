@@ -11,7 +11,7 @@ export default function Topbar({ title }) {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="h-16 border-b border-border bg-surface/80 backdrop-blur-md sticky top-0 z-10 flex items-center justify-between px-4 md:px-8 gap-4 shadow-[0_1px_3px_rgba(20,33,27,0.03)]">
+    <header className="h-16 sticky top-0 z-10 flex items-center justify-between px-4 md:px-8 gap-4 glass-panel rounded-none border-t-0 border-l-0 border-r-0 shadow-none border-b-border/40">
       <div className="min-w-0">
         <h1 className="font-display font-semibold text-ink text-lg truncate animate-fade-in-up">{title}</h1>
       </div>

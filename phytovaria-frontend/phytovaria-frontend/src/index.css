@@ -39,6 +39,15 @@
   --color-base-t: #1f8a5f;
   --color-base-c: #b8721e;
   --color-base-g: #a9463a;
+
+  /* Liquid Glass Tokens (Light Mode) */
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-blur: 24px;
+  --glass-saturate: 180%;
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 77, 61, 0.08);
+  --glass-radius: 16px;
 }
 
 .dark {
@@ -71,6 +80,15 @@
   --color-base-t: #45b386;
   --color-base-c: #e09945;
   --color-base-g: #d16e62;
+
+  /* Liquid Glass Tokens (Dark Mode) */
+  --glass-bg: rgba(20, 28, 25, 0.55);
+  --glass-blur: 24px;
+  --glass-saturate: 180%;
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  --glass-radius: 16px;
 }
 
 html,
@@ -120,4 +138,31 @@ body {
 .delay-300 { animation-delay: 300ms; }
 .delay-400 { animation-delay: 400ms; }
 .delay-500 { animation-delay: 500ms; }
+
+/* -----------------------------------------------------------------------
+   Liquid Glass Primitive
+   Every liquid glass surface should use this core class.
+--------------------------------------------------------------------------*/
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--glass-radius);
+  box-shadow: var(--glass-shadow), var(--glass-highlight);
+  /* Optional performance hint for heavy blur layering */
+  transform: translateZ(0);
+}
+
+/* Fallback for browsers that do not support backdrop-filter */
+@supports not (backdrop-filter: blur(10px)) {
+  .glass-panel {
+    background: var(--color-surface); /* Solid fallback */
+    border: 1px solid var(--color-border);
+  }
+  .dark .glass-panel {
+    background: var(--color-surface-alt);
+  }
+}
+
 
