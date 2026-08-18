@@ -18,7 +18,7 @@ FEATURES = [
     "resistance_gene_count", "susceptibility_gene_count", "evidence_strength_score",
     "temperature", "humidity", "soil_moisture", "light",
 ]
-DISEASES = ["Early Blight", "Late Blight", "Fusarium Wilt"]
+DISEASES = ["Early Blight", "Late Blight", "Fusarium Wilt", "Bacterial Spot"]
 
 HERE = os.path.dirname(__file__)
 DATA_PATH = os.path.join(HERE, "data", "synthetic_training_data.csv")

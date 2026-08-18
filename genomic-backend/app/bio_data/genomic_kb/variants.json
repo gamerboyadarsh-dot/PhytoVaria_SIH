@@ -254,6 +254,44 @@
       "inheritance_mode": "RECESSIVE",
       "evidence_level": "LEVEL_1_DEFINITIVE",
       "annotation_summary": "Uniform ripening (u) allele in GLK2 transcription factor producing evenly colored fruit with lower chloroplast development and reduced sugar content."
+    },
+    {
+      "variant_id": "VAR_SL4_11_RX4_01",
+      "chrom": "SL4.0ch11",
+      "chrom_num": 11,
+      "pos": 45000000,
+      "ref": "A",
+      "alt": "T",
+      "gene_symbol": "Rx-4",
+      "gene_id": "Approx_Chr11_Locus",
+      "transcript_id": "UNKNOWN",
+      "variant_type": "SNP",
+      "consequence": "functional_coding",
+      "protein_change": "UNKNOWN",
+      "codon_change": "UNKNOWN",
+      "allele_classification": "RESISTANT_ALLELE",
+      "inheritance_mode": "ADDITIVE",
+      "evidence_level": "LEVEL_1_DEFINITIVE",
+      "annotation_summary": "Locus on chromosome 11 conferring additive hypersensitive resistance to Xanthomonas perforans."
+    },
+    {
+      "variant_id": "VAR_SL4_03_BS4_01",
+      "chrom": "SL4.0ch03",
+      "chrom_num": 3,
+      "pos": 15000000,
+      "ref": "G",
+      "alt": "C",
+      "gene_symbol": "Bs4",
+      "gene_id": "Solyc03g007050",
+      "transcript_id": "Solyc03g007050.1.1",
+      "variant_type": "SNP",
+      "consequence": "missense_variant",
+      "protein_change": "UNKNOWN",
+      "codon_change": "UNKNOWN",
+      "allele_classification": "RESISTANT_ALLELE",
+      "inheritance_mode": "DOMINANT",
+      "evidence_level": "LEVEL_2_STRONG",
+      "annotation_summary": "Resistance allele interacting with microRNAs to regulate bacterial spot disease resistance."
     }
   ]
 }

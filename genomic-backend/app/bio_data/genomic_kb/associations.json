@@ -17,7 +17,7 @@
       "conferred_phenotype": "Durable dominant immunity preventing systemic viral movement and leaf mosaic/necrosis symptoms.",
       "risk_modifier_direction": "PROTECTIVE",
       "base_genomic_protection_score": 0.95,
-      "environmental_interaction": "Stable across wide greenhouse temperature ranges (20-32°C); durable against field resistance breakdown.",
+      "environmental_interaction": "Stable across wide greenhouse temperature ranges (20-32\u00c2\u00b0C); durable against field resistance breakdown.",
       "evidence_level": "LEVEL_1_DEFINITIVE",
       "citations": [
         {
@@ -49,7 +49,7 @@
       "conferred_phenotype": "Suppresses viral replication and symptom severity through enhanced cytosine methylation and siRNA viral gene silencing.",
       "risk_modifier_direction": "PROTECTIVE",
       "base_genomic_protection_score": 0.85,
-      "environmental_interaction": "Vector pressure (Bemisia tabaci whiteflies) at temperatures >28°C increases inoculation load; heterozygous Ty-1/ty-1 shows mild symptoms under extreme whitefly pressure.",
+      "environmental_interaction": "Vector pressure (Bemisia tabaci whiteflies) at temperatures >28\u00c2\u00b0C increases inoculation load; heterozygous Ty-1/ty-1 shows mild symptoms under extreme whitefly pressure.",
       "evidence_level": "LEVEL_1_DEFINITIVE",
       "citations": [
         {
@@ -72,8 +72,8 @@
       "effect_type": "CONFERRED_RESISTANCE",
       "conferred_phenotype": "Monogenic dominant resistance preventing xylem vessel colonization and vascular browning/wilting.",
       "risk_modifier_direction": "PROTECTIVE",
-      "base_genomic_protection_score": 0.90,
-      "environmental_interaction": "Soil temperatures between 25-28°C highly favor Fusarium infection in susceptible plants; resistant plants maintain vascular integrity.",
+      "base_genomic_protection_score": 0.9,
+      "environmental_interaction": "Soil temperatures between 25-28\u00c2\u00b0C highly favor Fusarium infection in susceptible plants; resistant plants maintain vascular integrity.",
       "evidence_level": "LEVEL_1_DEFINITIVE",
       "citations": [
         {
@@ -105,7 +105,7 @@
       "conferred_phenotype": "Cell surface LRR-receptor recognition of Ave1 effector; induces PR gene expression and prevents vascular wilt.",
       "risk_modifier_direction": "PROTECTIVE",
       "base_genomic_protection_score": 0.92,
-      "environmental_interaction": "Disease manifestation is elevated in cool soils (20-24°C) with moist conditions.",
+      "environmental_interaction": "Disease manifestation is elevated in cool soils (20-24\u00c2\u00b0C) with moist conditions.",
       "evidence_level": "LEVEL_1_DEFINITIVE",
       "citations": [
         {
@@ -137,7 +137,7 @@
       "conferred_phenotype": "Rapid hypersensitive response (HR) and local cell death restricting bacterial multiplication in stomata and apoplast.",
       "risk_modifier_direction": "PROTECTIVE",
       "base_genomic_protection_score": 0.88,
-      "environmental_interaction": "Prolonged leaf wetness (>90% humidity) and cool temperatures (18-24°C) trigger severe bacterial speck outbreaks in susceptible crops.",
+      "environmental_interaction": "Prolonged leaf wetness (>90% humidity) and cool temperatures (18-24\u00c2\u00b0C) trigger severe bacterial speck outbreaks in susceptible crops.",
       "evidence_level": "LEVEL_1_DEFINITIVE",
       "citations": [
         {
@@ -168,8 +168,8 @@
       "effect_type": "CONFERRED_RESISTANCE",
       "conferred_phenotype": "Strong broad-spectrum foliar and fruit protection against multiple aggressive Phytophthora infestans lineages (US-22, US-23, T30-4).",
       "risk_modifier_direction": "PROTECTIVE",
-      "base_genomic_protection_score": 0.90,
-      "environmental_interaction": "Extreme disease risk under high relative humidity (>85%) and moderate temperatures (15-22°C). Ph-3 markedly dampens sporangial sporulation.",
+      "base_genomic_protection_score": 0.9,
+      "environmental_interaction": "Extreme disease risk under high relative humidity (>85%) and moderate temperatures (15-22\u00c2\u00b0C). Ph-3 markedly dampens sporangial sporulation.",
       "evidence_level": "LEVEL_1_DEFINITIVE",
       "citations": [
         {
@@ -193,7 +193,7 @@
       "conferred_phenotype": "Immune recognition of viral movement protein NSm triggering systemic protection and preventing lethal necrotic collapse.",
       "risk_modifier_direction": "PROTECTIVE",
       "base_genomic_protection_score": 0.94,
-      "environmental_interaction": "Thrips feeding behavior at 24-30°C governs vector transmission; Sw-5b remains robust across typical temperate/tropical greenhouse climates.",
+      "environmental_interaction": "Thrips feeding behavior at 24-30\u00c2\u00b0C governs vector transmission; Sw-5b remains robust across typical temperate/tropical greenhouse climates.",
       "evidence_level": "LEVEL_1_DEFINITIVE",
       "citations": [
         {
@@ -249,7 +249,7 @@
       "conferred_phenotype": "Recessive loss of susceptibility factor preventing fungal appressorium penetration through papilla formation.",
       "risk_modifier_direction": "PROTECTIVE",
       "base_genomic_protection_score": 0.88,
-      "environmental_interaction": "Powdery mildew thrives in moderate temperature (20-25°C) and moderate relative humidity (60-80%); mutant ol-2 plants show total immunity.",
+      "environmental_interaction": "Powdery mildew thrives in moderate temperature (20-25\u00c2\u00b0C) and moderate relative humidity (60-80%); mutant ol-2 plants show total immunity.",
       "evidence_level": "LEVEL_1_DEFINITIVE",
       "citations": [
         {
@@ -273,7 +273,7 @@
       "conferred_phenotype": "Localized cell death at nematode feeding sites preventing giant cell formation and galling; repels aphid stylet probing.",
       "risk_modifier_direction": "PROTECTIVE",
       "base_genomic_protection_score": 0.87,
-      "environmental_interaction": "CRITICAL: Mi-1.2 resistance breaks down and becomes ineffective at soil/ambient temperatures above 28°C (82.4°F).",
+      "environmental_interaction": "CRITICAL: Mi-1.2 resistance breaks down and becomes ineffective at soil/ambient temperatures above 28\u00c2\u00b0C (82.4\u00c2\u00b0F).",
       "evidence_level": "LEVEL_1_DEFINITIVE",
       "citations": [
         {
@@ -296,7 +296,7 @@
       "effect_type": "AGRONOMIC_TRAIT",
       "conferred_phenotype": "Eliminates green shoulder in ripening fruit producing uniform color; lowers chloroplast abundance and reduces final sugars/carotenoids by 15-20%.",
       "risk_modifier_direction": "NEUTRAL",
-      "base_genomic_protection_score": 0.00,
+      "base_genomic_protection_score": 0.0,
       "environmental_interaction": "Solar radiation and temperature influence fruit ripening uniformity and color development.",
       "evidence_level": "LEVEL_1_DEFINITIVE",
       "citations": [
@@ -307,6 +307,54 @@
           "year": 2012,
           "pmid": "22745430",
           "doi": "10.1126/science.1222218"
+        }
+      ]
+    },
+    {
+      "association_id": "ASSOC_BACSPOT_RX4_01",
+      "gene_symbol": "Rx-4",
+      "gene_id": "Approx_Chr11_Locus",
+      "target_condition": "Bacterial Spot",
+      "pathogen_scientific_name": "Xanthomonas perforans (Race T3)",
+      "disease_category": "BACTERIAL",
+      "effect_type": "CONFERRED_RESISTANCE",
+      "conferred_phenotype": "Hypersensitive reaction (HR) to race T3 strains of Xanthomonas perforans, conferring additive resistance.",
+      "risk_modifier_direction": "PROTECTIVE",
+      "base_genomic_protection_score": 0.85,
+      "environmental_interaction": "Resistance expression is dependent on gene dosage and genetic background; field resistance remains robust but can be overwhelmed by extreme weather (heavy rain).",
+      "evidence_level": "LEVEL_1_DEFINITIVE",
+      "citations": [
+        {
+          "title": "Characterization of hypersensitive resistance to bacterial spot race T3 (Xanthomonas perforans) from tomato accession PI 128216.",
+          "authors": "Robbins MD, Darrigues A, Sim SC, Masud MA, Francis DM",
+          "journal": "Phytopathology",
+          "year": 2009,
+          "pmid": "19671005",
+          "doi": "10.1094/PHYTO-99-9-1037"
+        }
+      ]
+    },
+    {
+      "association_id": "ASSOC_BACSPOT_BS4_01",
+      "gene_symbol": "Bs4",
+      "gene_id": "Solyc03g007050",
+      "target_condition": "Bacterial Spot",
+      "pathogen_scientific_name": "Xanthomonas euvesicatoria",
+      "disease_category": "BACTERIAL",
+      "effect_type": "CONFERRED_RESISTANCE",
+      "conferred_phenotype": "Provides resistance to bacterial spot disease via post-transcriptional RNA silencing and microRNA targeting.",
+      "risk_modifier_direction": "PROTECTIVE",
+      "base_genomic_protection_score": 0.82,
+      "environmental_interaction": "Functional across standard greenhouse temperatures; microRNA binding accessibility regulates response.",
+      "evidence_level": "LEVEL_2_STRONG",
+      "citations": [
+        {
+          "title": "Synonymous sites for accessibility around microRNA binding sites in bacterial spot and speck disease resistance genes of tomato.",
+          "authors": "Sophiarani Y, Chakraborty S",
+          "journal": "Functional & integrative genomics",
+          "year": 2023,
+          "pmid": "37468805",
+          "doi": "10.1007/s10142-023-01178-x"
         }
       ]
     }

@@ -19,13 +19,14 @@ except Exception as e:
     print(f"[PhytoVaria] Warning: ML module not loaded: {e}")
     ML_AVAILABLE = False
 
-DISEASES = ["Early Blight", "Late Blight", "Fusarium Wilt"]
+DISEASES = ["Early Blight", "Late Blight", "Fusarium Wilt", "Bacterial Spot"]
 
 # Environmental thresholds for rule-based environmental scoring
 ENV_THRESHOLDS = {
     "Early Blight": {"temp_range": (20, 30), "humidity_min": 70},
     "Late Blight": {"temp_range": (10, 24), "humidity_min": 75},
     "Fusarium Wilt": {"temp_range": (25, 35), "humidity_min": 40},
+    "Bacterial Spot": {"temp_range": (24, 30), "humidity_min": 85},
 }
 
 
