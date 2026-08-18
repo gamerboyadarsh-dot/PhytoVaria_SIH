@@ -6,6 +6,11 @@ PhytoVaria is a software-heavy platform that fuses **genomics, machine learning,
 
 This repository contains the **complete, integrated, end-to-end working prototype** developed for the Smart India Hackathon.
 
+## 🌐 Live Deployments
+
+- **Frontend (Vercel)**: [https://phyto-varia-sih.vercel.app](https://phyto-varia-sih.vercel.app)
+- **Backend (Render)**: [https://phytovaria-backend.onrender.com](https://phytovaria-backend.onrender.com)
+
 ---
 
 ## 🏗️ Architecture & Modules
