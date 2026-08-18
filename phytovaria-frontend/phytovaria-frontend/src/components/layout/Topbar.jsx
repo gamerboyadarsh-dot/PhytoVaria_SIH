@@ -1,17 +1,19 @@
-import { FlaskConical, ChevronDown, LogOut } from "lucide-react";
+import { FlaskConical, ChevronDown, LogOut, Sun, Moon } from "lucide-react";
 import { useDemoMode } from "../../context/DemoModeContext.jsx";
 import { usePlantContext } from "../../context/PlantContext.jsx";
 import { useAuth } from "../../context/AuthContext.jsx";
+import { useTheme } from "../../context/ThemeContext.jsx";
 
 export default function Topbar({ title }) {
   const { demoMode, toggleDemoMode } = useDemoMode();
   const { plants, selectedPlantId, setSelectedPlantId } = usePlantContext();
   const { user, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="h-16 border-b border-border bg-surface/80 backdrop-blur sticky top-0 z-10 flex items-center justify-between px-4 md:px-8 gap-4">
+    <header className="h-16 sticky top-0 z-10 flex items-center justify-between px-4 md:px-8 gap-4 glass-panel rounded-none border-t-0 border-l-0 border-r-0 shadow-none border-b-border/40">
       <div className="min-w-0">
-        <h1 className="font-display font-semibold text-ink text-lg truncate">{title}</h1>
+        <h1 className="font-display font-semibold text-ink text-lg truncate animate-fade-in-up">{title}</h1>
       </div>
 
       <div className="flex items-center gap-3 shrink-0">
@@ -20,7 +22,7 @@ export default function Topbar({ title }) {
             <select
               value={selectedPlantId || ""}
               onChange={(e) => setSelectedPlantId(e.target.value)}
-              className="appearance-none text-sm bg-surface-alt border border-border rounded-lg pl-3 pr-8 py-2 text-ink font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="appearance-none text-sm bg-surface-alt hover:bg-surface border border-border hover:border-accent/40 transition-colors rounded-lg pl-3 pr-8 py-2 text-ink font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent shadow-sm cursor-pointer"
             >
               {plants.map((p) => (
                 <option key={p.id} value={p.id}>
@@ -43,6 +45,14 @@ export default function Topbar({ title }) {
         >
           <FlaskConical size={13} />
           {demoMode ? "Demo Mode" : "Live"}
+        </button>
+
+        <button
+          onClick={toggleTheme}
+          title="Toggle light/dark theme"
+          className="p-1.5 rounded-full text-ink-muted hover:bg-surface-alt transition-colors"
+        >
+          {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
         </button>
 
         {user && (

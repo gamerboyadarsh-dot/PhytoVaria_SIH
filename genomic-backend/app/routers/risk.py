@@ -1,48 +1,46 @@
+import json
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
 
 from app.database import get_session
-from app.models import Plant, VCFUpload, Variant, RiskAssessment
-from app.schemas import RiskRead
-from app.services.risk_engine import compute_risk
+from app.models import Plant, VCFUpload, Variant, RiskAssessment, SensorReading
+from app.schemas import RiskRead, DiseaseScore, ExplanationFactor
 
 router = APIRouter(prefix="/plants", tags=["risk"])
 
 
-@router.post("/{plant_id}/risk", response_model=RiskRead)
-def compute_plant_risk(plant_id: int, session: Session = Depends(get_session)):
-    """Computes risk from the plant's already-interpreted variants."""
-    plant = session.get(Plant, plant_id)
-    if not plant:
-        raise HTTPException(status_code=404, detail="Plant not found")
+def _parse_risk_record(record: RiskAssessment) -> dict:
+    """Parses JSON fields back to structured data."""
+    disease_scores = []
+    contributing_factors = []
 
-    uploads = session.exec(
-        select(VCFUpload).where(VCFUpload.plant_id == plant_id)
-    ).all()
-    upload_ids = [u.id for u in uploads]
-    variants = []
-    if upload_ids:
-        variants = session.exec(
-            select(Variant).where(Variant.vcf_upload_id.in_(upload_ids))
-        ).all()
-    if not variants:
-        raise HTTPException(status_code=404, detail="No interpreted variants yet — run /interpret first")
+    if record.disease_scores_json:
+        try:
+            disease_scores = [DiseaseScore(**d) for d in json.loads(record.disease_scores_json)]
+        except Exception:
+            pass
 
-    variant_dicts = [{"classification": v.classification} for v in variants]
-    result = compute_risk(variant_dicts)
+    if record.explanation_json:
+        try:
+            contributing_factors = [ExplanationFactor(**f) for f in json.loads(record.explanation_json)]
+        except Exception:
+            pass
 
-    record = RiskAssessment(
-        plant_id=plant_id,
-        risk_score=result["risk_score"],
-        risk_level=result["risk_level"],
-    )
-    session.add(record)
-    session.commit()
-    session.refresh(record)
-    return record
+    return {
+        "id": record.id,
+        "plant_id": record.plant_id,
+        "risk_score": record.risk_score,
+        "risk_level": record.risk_level,
+        "confidence": record.confidence,
+        "method": record.method,
+        "disease_scores": disease_scores,
+        "contributing_factors": contributing_factors,
+        "computed_at": record.computed_at,
+    }
 
 
-@router.get("/{plant_id}/risk", response_model=RiskRead)
+@router.get("/{plant_id}/risk")
+@router.get("/{plant_id}/risk-assessment")   # frontend alias
 def get_latest_risk(plant_id: int, session: Session = Depends(get_session)):
     record = session.exec(
         select(RiskAssessment)
@@ -50,5 +48,13 @@ def get_latest_risk(plant_id: int, session: Session = Depends(get_session)):
         .order_by(RiskAssessment.computed_at.desc())
     ).first()
     if not record:
-        raise HTTPException(status_code=404, detail="No risk assessment yet")
-    return record
+        raise HTTPException(status_code=404, detail="No risk assessment found. Run POST /plants/{id}/analyze first.")
+    return _parse_risk_record(record)
+
+
+@router.post("/{plant_id}/risk-assessment/run")
+@router.post("/{plant_id}/risk/run")
+def run_risk_assessment(plant_id: int, session: Session = Depends(get_session)):
+    """Alias that triggers re-analysis of the plant. Delegates to analyze endpoint logic."""
+    from app.routers.analysis import analyze_plant
+    return analyze_plant(plant_id=plant_id, session=session)

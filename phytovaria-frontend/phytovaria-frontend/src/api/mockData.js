@@ -1,13 +1,12 @@
 /**
- * MOCK / DEMO DATA ONLY — clearly labeled.
+ * DEMO / MOCK DATA — used when Demo Mode is ON.
  *
- * Gene names, variant loci, and disease associations below are sourced
- * from the PhytoVaria curated knowledge base (Solanum lycopersicum).
- * Citations available in the knowledge base (see /docs endpoint).
+ * Gene names and disease associations below are drawn from the real PhytoVaria
+ * Genomic Knowledge Base (curated tomato resistance gene literature).
+ * They are used for UI layout/demo purposes when the backend is unavailable.
  *
- * For the demo: these mirror what the real backend returns when
- * a susceptible_heirloom_SL4.vcf is analyzed against the KB.
- * Switch VITE_DEMO_MODE=false to use real backend data.
+ * Do NOT present this data as newly-derived results in front of judges —
+ * always label demo data as "Demo Mode" in the UI.
  */
 
 export const mockPlants = [
@@ -15,288 +14,239 @@ export const mockPlants = [
     id: 1,
     name: "Tomato-001",
     species: "Solanum lycopersicum",
-    variety: "Heirloom (SL4 Reference)",
+    variety: "Susceptible Heirloom",
     location: "Greenhouse 1",
-    sample_source: "Leaf tissue (young)",
-    collection_date: "2026-08-10",
-    notes: "Primary demo sample — susceptible heirloom cultivar",
+    sample_source: "Leaf tissue",
+    collection_date: "2026-08-15",
     status: "analyzed",
-    registered_at: "2026-08-10T08:00:00Z",
+    registered_at: "2026-08-15T09:00:00Z",
     thumbnailColor: "#1F4D3D",
   },
   {
     id: 2,
     name: "Tomato-002",
     species: "Solanum lycopersicum",
-    variety: "Resistant Cultivar (SL4 R-genes)",
-    location: "Field Plot A",
-    sample_source: "Leaf tissue (mature)",
-    collection_date: "2026-08-12",
-    notes: "Resistant cultivar with I-2 and Ph-3 introgression",
-    status: "vcf_uploaded",
-    registered_at: "2026-08-12T09:30:00Z",
-    thumbnailColor: "#4C46A6",
-  },
-  {
-    id: 3,
-    name: "Tomato-003",
-    species: "Solanum lycopersicum",
-    variety: "Unknown cultivar",
+    variety: "Resistant Cultivar SL4",
     location: "Greenhouse 2",
-    sample_source: "Root tissue",
-    collection_date: "2026-08-14",
-    notes: "Field sample — analysis pending",
-    status: "registered",
-    registered_at: "2026-08-14T11:00:00Z",
-    thumbnailColor: "#B8721E",
+    sample_source: "Leaf tissue",
+    collection_date: "2026-08-16",
+    status: "vcf_uploaded",
+    registered_at: "2026-08-16T10:00:00Z",
+    thumbnailColor: "#4C3A1A",
   },
 ];
 
-// Variants from the susceptible heirloom SL4 sample (knowledge base matched)
 export const mockVariants = [
   {
     id: 1,
+    plantId: 1,
     chrom: "SL4.0ch09",
     pos: 2408520,
     ref: "G",
-    alt: "G",
-    gene_symbol: "tm-2",
-    consequence: "wild_type_reference",
-    classification: "EXACT_MATCH",
+    alt: "A",
+    gene_symbol: "Tm-2²",
+    gene_id: "Solyc09g007010",
+    consequence: "missense_variant",
+    protein_change: "p.Glu520Lys",
+    variant_type: "SNP",
+    match_status: "EXACT_MATCH",
+    allele_classification: "RESISTANT_ALLELE",
+    inferred_phenotype: "CONFERRED_RESISTANCE",
     evidence_level: "LEVEL_1_DEFINITIVE",
-    confidence: 0.05,
-    annotation: "Wild-type reference allele — susceptible to Tomato Mosaic Virus.",
+    confidence_level: "HIGH",
+    genomic_protection_score: 0.95,
+    interpretation:
+      "Genotype '0/1' (HET) at Tm-2² (p.Glu520Lys). Result: Conferred Resistance. Functional missense substitution in CC-NBS-LRR domain conferring resistance against Tomato Mosaic Virus (ToMV).",
+    associations: [
+      {
+        target_condition: "Tomato Mosaic Virus (ToMV)",
+        pathogen: "Tomato Mosaic Virus",
+        disease_category: "Viral",
+        effect_type: "RESISTANCE",
+        conferred_phenotype: "BROAD_SPECTRUM_RESISTANCE",
+        risk_modifier_direction: "PROTECTIVE",
+        environmental_interaction: "Temperature above 33°C may overcome resistance.",
+      },
+    ],
   },
   {
     id: 2,
-    chrom: "SL4.0ch09",
-    pos: 1605420,
-    ref: "C",
-    alt: "T",
-    gene_symbol: "Ve1",
-    consequence: "stop_gained_in_susceptible",
-    classification: "EXACT_MATCH",
+    plantId: 1,
+    chrom: "SL4.0ch11",
+    pos: 51208310,
+    ref: "A",
+    alt: "G",
+    gene_symbol: "I-2",
+    gene_id: "Solyc11g071430",
+    consequence: "missense_variant",
+    protein_change: "p.Ile653Val",
+    variant_type: "SNP",
+    match_status: "EXACT_MATCH",
+    allele_classification: "RESISTANT_ALLELE",
+    inferred_phenotype: "CONFERRED_RESISTANCE",
     evidence_level: "LEVEL_1_DEFINITIVE",
-    confidence: 0.08,
-    annotation: "Premature truncation in Ve1 — loss of Verticillium resistance.",
+    confidence_level: "HIGH",
+    genomic_protection_score: 0.92,
+    interpretation:
+      "Resistance allele at I-2 locus. Confers race-specific resistance to Fusarium oxysporum f. sp. lycopersici race 2.",
+    associations: [
+      {
+        target_condition: "Fusarium Wilt",
+        pathogen: "Fusarium oxysporum f. sp. lycopersici",
+        disease_category: "Fungal",
+        effect_type: "RESISTANCE",
+        conferred_phenotype: "RACE_SPECIFIC_RESISTANCE",
+        risk_modifier_direction: "PROTECTIVE",
+        environmental_interaction: "Resistance may be reduced in high-temperature soils (>28°C).",
+      },
+    ],
   },
   {
     id: 3,
+    plantId: 1,
     chrom: "SL4.0ch01",
     pos: 1214800,
     ref: "C",
-    alt: "A",
+    alt: "T",
     gene_symbol: "Cf-9",
-    consequence: "missense_variant",
-    classification: "EXACT_MATCH",
-    evidence_level: "LEVEL_1_DEFINITIVE",
-    confidence: 0.86,
-    annotation: "Cf-9 resistance allele — protection against Cladosporium leaf mold.",
-  },
-  {
-    id: 4,
-    chrom: "SL4.0ch12",
-    pos: 4521890,
-    ref: "A",
-    alt: "C",
-    gene_symbol: null,
-    consequence: "intergenic_variant",
-    classification: "UNKNOWN_INSUFFICIENT_EVIDENCE",
-    evidence_level: null,
-    confidence: null,
-    annotation: "Unknown / Insufficient Evidence — no curated association found.",
-  },
-  {
-    id: 5,
-    chrom: "SL4.0ch03",
-    pos: 9876543,
-    ref: "T",
-    alt: "G",
-    gene_symbol: null,
-    consequence: "synonymous_variant",
-    classification: "UNKNOWN_INSUFFICIENT_EVIDENCE",
-    evidence_level: null,
-    confidence: null,
-    annotation: "Unknown / Insufficient Evidence.",
+    gene_id: "Solyc01g006550",
+    consequence: "snp_variant",
+    protein_change: null,
+    variant_type: "SNP",
+    match_status: "NOVEL_ALLELE_AT_LOCUS",
+    allele_classification: "UNKNOWN",
+    inferred_phenotype: "INSUFFICIENT_EVIDENCE",
+    evidence_level: "NO_EVIDENCE",
+    confidence_level: "LOW",
+    genomic_protection_score: null,
+    interpretation:
+      "Variant at Cf-9 locus (Cladosporium fulvum race-9 resistance gene), but this specific alternate allele has no peer-reviewed disease outcome data. Classified as Unknown / Insufficient Evidence.",
+    associations: [],
   },
 ];
 
-// Real KB disease associations (from associations.json)
 export const mockDiseaseAssociations = [
   {
-    condition: "Tomato Mosaic Virus (ToMV) & Tobacco Mosaic Virus (TMV)",
-    pathogen: "Tomato mosaic virus / Tobacco mosaic virus (Tobamovirus)",
-    category: "VIRAL",
-    gene_symbol: "tm-2",
-    genotype: "G/G (homozygous susceptible)",
-    zygosity: "HOMOZYGOUS",
-    phenotype: "SUSCEPTIBLE — lacks viral movement protein recognition",
-    genomic_protection_score: 0.05,
+    condition: "Tomato Mosaic Virus (ToMV)",
+    pathogen: "Tomato Mosaic Virus",
+    category: "Viral",
+    gene_symbol: "Tm-2²",
+    genotype: "0/1",
+    zygosity: "HET",
+    phenotype: "CONFERRED_RESISTANCE",
+    genomic_protection_score: 0.95,
     evidence_level: "LEVEL_1_DEFINITIVE",
-    interpretation: "Susceptible wild-type allele — plant lacks ToMV resistance.",
-    environmental_interaction: "Stable across wide greenhouse temperature ranges.",
+    interpretation:
+      "Heterozygous resistance allele at Tm-2² confers broad-spectrum protection against ToMV.",
+    environmental_interaction: "Temperature above 33°C may overcome Tm-2² resistance.",
   },
   {
-    condition: "Verticillium Wilt (Race 1)",
-    pathogen: "Verticillium dahliae race 1",
-    category: "FUNGAL",
-    gene_symbol: "Ve1 (truncated)",
-    genotype: "C→T (stop gained)",
-    zygosity: "HETEROZYGOUS",
-    phenotype: "SUSCEPTIBLE — loss-of-function in Ve1 receptor",
-    genomic_protection_score: 0.08,
+    condition: "Fusarium Wilt",
+    pathogen: "Fusarium oxysporum f. sp. lycopersici",
+    category: "Fungal",
+    gene_symbol: "I-2",
+    genotype: "0/1",
+    zygosity: "HET",
+    phenotype: "CONFERRED_RESISTANCE",
+    genomic_protection_score: 0.92,
     evidence_level: "LEVEL_1_DEFINITIVE",
-    interpretation: "Premature stop codon eliminates Ve1 effector recognition.",
-    environmental_interaction: "Elevated in cool moist soils (20-24°C).",
-  },
-  {
-    condition: "Leaf Mold / Cladosporium Leaf Spot",
-    pathogen: "Passalora fulva",
-    category: "FUNGAL",
-    gene_symbol: "Cf-9",
-    genotype: "C→A",
-    zygosity: "HETEROZYGOUS",
-    phenotype: "RESISTANT — Avr9 effector recognition active",
-    genomic_protection_score: 0.86,
-    evidence_level: "LEVEL_1_DEFINITIVE",
-    interpretation: "Cf-9 resistance allele provides foliar leaf mold protection.",
-    environmental_interaction: "Risk elevated at humidity >80% in greenhouse.",
+    interpretation:
+      "I-2 resistance allele identified — race-specific protection against Fusarium wilt race 2.",
+    environmental_interaction: "Warm soils (>28°C) may reduce I-2 efficacy.",
   },
 ];
 
-// Risk assessment — matching backend DiseaseRiskEntry schema
 export const mockRiskAssessment = {
+  id: 1,
   plant_id: 1,
-  computed_at: "2026-08-16T09:30:00Z",
-  overall_risk_score: 61.4,
-  overall_risk_level: "MODERATE",
-  // Frontend display fields (keep for compatibility)
-  overallLabel: "Moderate",
-  overallScore: 0.61,
+  risk_score: 38.0,
+  risk_level: "low",
   confidence: "Moderate",
-  disease_breakdown: [
+  method: "rule_ml_combined",
+  disease_scores: [
     {
-      disease: "Tomato Mosaic Virus (ToMV) & Tobacco Mosaic Virus (TMV)",
-      risk_score: 78,
-      risk_level: "HIGH",
-      confidence: "High",
-      genomic_evidence: "Susceptibility allele detected at tm-2 — wild-type reference, no resistance.",
-      environmental_note: "Stable across greenhouse temperature ranges.",
-      ml_reasoning: null,
-      gene_symbol: "tm-2",
-      evidence_level: "LEVEL_1_DEFINITIVE",
-      category: "VIRAL",
-    },
-    {
-      disease: "Verticillium Wilt (Race 1)",
-      risk_score: 72,
-      risk_level: "HIGH",
-      confidence: "High",
-      genomic_evidence: "Ve1 receptor truncated — loss of Verticillium Ave1 recognition.",
-      environmental_note: "Risk elevated in cool moist soils (20-24°C).",
-      ml_reasoning: null,
-      gene_symbol: "Ve1",
-      evidence_level: "LEVEL_1_DEFINITIVE",
-      category: "FUNGAL",
+      disease: "Early Blight",
+      risk_score: 38.0,
+      risk_level: "low",
+      confidence: "Moderate",
+      genomic_protection_score: 0.5,
+      ml_predicted_level: "low",
+      ml_confidence: 0.78,
+      ml_reasoning:
+        "Model predicts low risk for Early Blight, driven primarily by resistance gene count. Genomic profile: 2 resistance gene(s).",
+      evidence_level: "NO_EVIDENCE",
     },
     {
       disease: "Late Blight",
-      risk_score: 55,
-      risk_level: "MODERATE",
+      risk_score: 46.0,
+      risk_level: "moderate",
       confidence: "Low",
-      genomic_evidence: "No specific Ph-3 variant detected in this sample.",
-      environmental_note: "Extreme risk at humidity >85% and 15-22°C.",
-      ml_reasoning: "Model predicts MODERATE risk for Late Blight, driven primarily by humidity. Genomic profile: 0 resistance gene(s).",
-      gene_symbol: null,
-      evidence_level: "ML_DEMONSTRATION_ONLY",
-      category: "ML_PREDICTED",
-    },
-    {
-      disease: "Leaf Mold / Cladosporium Leaf Spot",
-      risk_score: 18,
-      risk_level: "LOW",
-      confidence: "High",
-      genomic_evidence: "Cf-9 resistance allele detected — protection against leaf mold active.",
-      environmental_note: "Leaf mold proliferates at humidity >80%.",
-      ml_reasoning: null,
-      gene_symbol: "Cf-9",
-      evidence_level: "LEVEL_1_DEFINITIVE",
-      category: "FUNGAL",
+      genomic_protection_score: 0.5,
+      ml_predicted_level: "moderate",
+      ml_confidence: 0.65,
+      ml_reasoning:
+        "Model predicts moderate risk for Late Blight, driven primarily by humidity level. Genomic profile: 2 resistance gene(s).",
+      evidence_level: "NO_EVIDENCE",
     },
     {
       disease: "Fusarium Wilt",
-      risk_score: 42,
-      risk_level: "MODERATE",
-      confidence: "Low",
-      genomic_evidence: "No I-2 resistance allele detected in this sample.",
-      environmental_note: "Soil temperatures 25-28°C highly favor Fusarium infection.",
-      ml_reasoning: "Model predicts MODERATE risk for Fusarium Wilt, driven primarily by susceptibility gene count.",
-      gene_symbol: null,
-      evidence_level: "ML_DEMONSTRATION_ONLY",
-      category: "ML_PREDICTED",
+      risk_score: 30.0,
+      risk_level: "low",
+      confidence: "Moderate",
+      genomic_protection_score: 0.92,
+      ml_predicted_level: "low",
+      ml_confidence: 0.82,
+      ml_reasoning:
+        "Model predicts low risk for Fusarium Wilt, driven primarily by resistance gene count. Genomic profile: 1 resistance gene(s).",
+      evidence_level: "LEVEL_1_DEFINITIVE",
     },
   ],
-  // Legacy shape (keep for dashboard compatibility)
+  contributing_factors: [
+    {
+      type: "genomic",
+      label: "I-2 — Conferred Resistance",
+      detail: "Genomic protection score: 0.92",
+      weight: 0.05,
+    },
+    {
+      type: "environmental",
+      label: "Fusarium Wilt — Environmental risk",
+      detail: "Temperature: 26.5°C, Humidity: 82.0%",
+      weight: 0.4,
+    },
+    {
+      type: "ml",
+      label: "ML Model — Random Forest (demonstration)",
+      detail: "Trained on synthetic rule-derived labels. Not field-validated.",
+      weight: null,
+    },
+  ],
+  computed_at: "2026-08-18T09:30:00Z",
+  // Frontend-specific fields for legacy compatibility
+  overallLabel: "Low",
+  overallScore: 0.38,
   traitScores: [
-    { trait: "Tomato Mosaic Virus (ToMV)", score: 0.78, label: "High", confidence: "High" },
-    { trait: "Verticillium Wilt", score: 0.72, label: "High", confidence: "High" },
-    { trait: "Late Blight", score: 0.55, label: "Moderate", confidence: "Low" },
-    { trait: "Leaf Mold", score: 0.18, label: "Low", confidence: "High" },
-    { trait: "Fusarium Wilt", score: 0.42, label: "Moderate", confidence: "Low" },
-  ],
-  contributingFactors: [
-    { type: "genomic", label: "tm-2 wild-type susceptible allele", weight: 0.45 },
-    { type: "genomic", label: "Ve1 receptor truncation (stop_gained)", weight: 0.35 },
-    { type: "genomic", label: "Cf-9 resistance allele (protective)", weight: -0.20 },
-    { type: "environmental", label: "Humidity 67% — moderate leaf mold pressure", weight: 0.15 },
+    { trait: "Early Blight", score: 0.38, label: "Low", confidence: "Moderate" },
+    { trait: "Late Blight", score: 0.46, label: "Medium", confidence: "Low" },
+    { trait: "Fusarium Wilt", score: 0.30, label: "Low", confidence: "Moderate" },
   ],
 };
 
-// Full analysis result (mirrors backend POST /plants/{id}/analyze response)
-export const mockAnalysisResult = {
-  status: "SUCCESS",
-  plant_id: 1,
-  vcf_filename: "susceptible_heirloom_SL4.vcf",
-  summary: {
-    total_vcf_variants: 847,
-    variants_evaluated: 847,
-    exact_knowledge_base_matches: 3,
-    novel_alleles_at_known_loci: 1,
-    unknown_insufficient_evidence_variants: 843,
-    resistance_alleles_detected: 1,
-    susceptibility_alleles_detected: 2,
-  },
-  disease_susceptibility_profile: mockDiseaseAssociations,
-  risk: {
-    overall_risk_score: 61.4,
-    overall_risk_level: "MODERATE",
-    disease_breakdown: mockRiskAssessment.disease_breakdown,
-    environmental_context: {
-      temperature_c: 25.4,
-      humidity_pct: 67.2,
-      source: "demo",
-    },
-  },
-  actionable_variants: mockVariants.filter((v) => v.classification === "EXACT_MATCH"),
-  unknown_variants_sample: mockVariants.filter((v) => v.classification === "UNKNOWN_INSUFFICIENT_EVIDENCE"),
-  methodology_note:
-    "DEMO MODE: Risk scores combine curated genomic evidence from the PhytoVaria knowledge base " +
-    "with environmental sensor data and a Random Forest demonstration model.",
-};
-
-// Sensor readings (realistic greenhouse data)
-export const mockSensorReadings = Array.from({ length: 24 }).map((_, i) => {
-  const hour = i;
-  const baseTemp = 22 + Math.sin((i / 24) * Math.PI * 2) * 4;
-  const baseHum = 65 + Math.sin((i / 24) * Math.PI * 2 + 1) * 12;
+export const mockSensorReadings = Array.from({ length: 12 }).map((_, i) => {
+  const hour = 8 + i;
   return {
     id: i + 1,
     plant_id: 1,
-    temperature: Math.round(baseTemp * 10) / 10,
-    humidity: Math.round(baseHum * 10) / 10,
+    temperature: parseFloat((24 + Math.sin(i / 2) * 3).toFixed(1)),
+    humidity: parseFloat((65 + Math.cos(i / 3) * 12).toFixed(1)),
+    soil_moisture: parseFloat((50 + Math.sin(i / 4) * 8).toFixed(1)),
+    light: parseFloat((450 + Math.cos(i / 2) * 100).toFixed(1)),
     source: "demo",
-    recorded_at: new Date(Date.now() - (24 - i) * 3600 * 1000).toISOString(),
+    recorded_at: `2026-08-18T${String(hour).padStart(2, "0")}:00:00Z`,
+    // Legacy alias fields
+    temperatureC: parseFloat((24 + Math.sin(i / 2) * 3).toFixed(1)),
+    humidityPct: parseFloat((65 + Math.cos(i / 3) * 12).toFixed(1)),
   };
 });
 
-export const mockUser = { name: "Demo User", role: "Field Researcher" };
+export const mockUser = { name: "Demo Researcher", role: "Field Researcher" };

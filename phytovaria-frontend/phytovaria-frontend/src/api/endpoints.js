@@ -5,22 +5,32 @@ import {
   mockDiseaseAssociations,
   mockRiskAssessment,
   mockSensorReadings,
-  mockAnalysisResult,
 } from "./mockData.js";
 
 /**
- * API endpoints — demoMode=true returns realistic mock data,
- * demoMode=false calls the real FastAPI backend.
+ * PhytoVaria API endpoints.
+ * Every function takes `demoMode` as first arg so the same call site works
+ * whether Demo Mode is on (mock data) or off (real backend).
  *
- * All backend URLs match the actual FastAPI routes.
+ * BACKEND CONTRACT (FastAPI on localhost:8001, proxied via /api):
+ *   GET  /plants/                          → list plants
+ *   POST /plants/                          → register plant
+ *   GET  /plants/:id                       → get plant
+ *   POST /plants/:id/vcf                   → upload VCF
+ *   POST /plants/:id/analyze               → run full pipeline
+ *   GET  /plants/:id/variants              → get annotated variants
+ *   GET  /plants/:id/disease-associations  → disease profile
+ *   GET  /plants/:id/risk-assessment       → risk assessment (alias)
+ *   POST /plants/:id/risk-assessment/run   → re-run risk
+ *   GET  /plants/:id/sensor-readings       → sensor readings (alias)
+ *   POST /plants/:id/sensor               → add sensor reading
+ *   GET  /plants/:id/report                → full report
  */
 const wait = (ms = 350) => new Promise((r) => setTimeout(r, ms));
 
-// ── Plants ────────────────────────────────────────────────────────────────────
-
 export async function listPlants(demoMode) {
   if (demoMode) { await wait(); return mockPlants; }
-  return client.get("/plants");
+  return client.get("/plants/");
 }
 
 export async function getPlant(demoMode, plantId) {
@@ -36,18 +46,10 @@ export async function getPlant(demoMode, plantId) {
 export async function registerPlant(demoMode, payload) {
   if (demoMode) {
     await wait();
-    return {
-      id: Date.now(),
-      status: "registered",
-      registered_at: new Date().toISOString(),
-      species: "Solanum lycopersicum",
-      ...payload,
-    };
+    return { id: `plant_${Date.now()}`, status: "registered", ...payload };
   }
-  return client.post("/plants", payload);
+  return client.post("/plants/", payload);
 }
-
-// ── VCF Upload ────────────────────────────────────────────────────────────────
 
 export async function uploadVcf(demoMode, plantId, file) {
   if (demoMode) {
@@ -57,7 +59,8 @@ export async function uploadVcf(demoMode, plantId, file) {
       plant_id: plantId,
       filename: file?.name ?? "demo.vcf",
       status: "uploaded",
-      uploaded_at: new Date().toISOString(),
+      total_variants: null,
+      kb_matches: null,
     };
   }
   const form = new FormData();
@@ -65,30 +68,32 @@ export async function uploadVcf(demoMode, plantId, file) {
   return client.upload(`/plants/${plantId}/vcf`, form);
 }
 
-// ── Analysis (full pipeline) ──────────────────────────────────────────────────
-
-export async function analyzeVcf(demoMode, plantId) {
+export async function analyzePlant(demoMode, plantId) {
   if (demoMode) {
-    await wait(1800);
-    return mockAnalysisResult;
+    await wait(1500);
+    return {
+      status: "SUCCESS",
+      plant_id: plantId,
+      pipeline: {
+        summary: {
+          total_vcf_variants: 12,
+          exact_knowledge_base_matches: 2,
+          novel_alleles_at_known_loci: 8,
+          unknown_insufficient_evidence_variants: 2,
+          resistance_alleles_detected: 1,
+          susceptibility_alleles_detected: 1,
+        },
+      },
+      risk: mockRiskAssessment,
+    };
   }
   return client.post(`/plants/${plantId}/analyze`);
 }
 
-export async function getAnalysis(demoMode, plantId) {
-  if (demoMode) {
-    await wait();
-    return mockAnalysisResult;
-  }
-  return client.get(`/plants/${plantId}/analysis`);
-}
-
-// ── Variants ──────────────────────────────────────────────────────────────────
-
 export async function listVariants(demoMode, plantId) {
   if (demoMode) {
     await wait();
-    return mockVariants;
+    return mockVariants.filter((v) => String(v.plantId) === String(plantId));
   }
   return client.get(`/plants/${plantId}/variants`);
 }
@@ -101,72 +106,60 @@ export async function listDiseaseAssociations(demoMode, plantId) {
   return client.get(`/plants/${plantId}/disease-associations`);
 }
 
-// ── Risk ──────────────────────────────────────────────────────────────────────
-
 export async function getRiskAssessment(demoMode, plantId) {
-  if (demoMode) { await wait(600); return { ...mockRiskAssessment, plant_id: plantId }; }
-  return client.get(`/plants/${plantId}/risk`);
+  if (demoMode) {
+    await wait(600);
+    return { ...mockRiskAssessment, plant_id: plantId };
+  }
+  // Backend supports both /risk and /risk-assessment
+  return client.get(`/plants/${plantId}/risk-assessment`);
 }
 
 export async function runRiskAnalysis(demoMode, plantId) {
   if (demoMode) {
     await wait(1200);
-    return { ...mockRiskAssessment, plant_id: plantId, computed_at: new Date().toISOString() };
+    return { ...mockRiskAssessment, plant_id: plantId, generatedAt: new Date().toISOString() };
   }
-  return client.post(`/plants/${plantId}/risk`);
+  return client.post(`/plants/${plantId}/risk-assessment/run`);
 }
-
-// ── Sensor ────────────────────────────────────────────────────────────────────
 
 export async function getSensorReadings(demoMode, plantId) {
-  if (demoMode) { await wait(); return mockSensorReadings; }
-  return client.get(`/plants/${plantId}/sensor`);
+  if (demoMode) {
+    await wait();
+    return mockSensorReadings;
+  }
+  return client.get(`/plants/${plantId}/sensor-readings`);
 }
 
-export async function postSensorReading(demoMode, payload) {
-  // payload: { temperature, humidity, plant_id? }
+export async function addSensorReading(demoMode, plantId, payload) {
   if (demoMode) {
     await wait(300);
-    return { id: Date.now(), source: "demo", recorded_at: new Date().toISOString(), ...payload };
+    return { id: Date.now(), plant_id: plantId, source: "demo", ...payload };
   }
-  return client.post("/sensor", payload);
+  return client.post(`/plants/${plantId}/sensor`, payload);
 }
-
-// ── Report ────────────────────────────────────────────────────────────────────
 
 export async function getReport(demoMode, plantId) {
   if (demoMode) {
     await wait(500);
-    const plant = mockPlants.find((p) => String(p.id) === String(plantId)) || mockPlants[0];
     return {
-      plant,
-      genomic_summary: mockAnalysisResult.summary,
-      important_variants: mockVariants,
-      disease_profile: mockAnalysisResult.disease_susceptibility_profile,
-      risk_assessment: {
-        overall_risk_score: mockRiskAssessment.overall_risk_score,
-        overall_risk_level: mockRiskAssessment.overall_risk_level,
-        disease_breakdown: mockRiskAssessment.disease_breakdown,
-        computed_at: mockRiskAssessment.computed_at,
+      plant_id: plantId,
+      generated_at: new Date().toISOString(),
+      plant: mockPlants.find((p) => String(p.id) === String(plantId)) || mockPlants[0],
+      variant_summary: {
+        total: 12,
+        exact_matches: 2,
+        novel_at_locus: 8,
+        unknown: 2,
+        resistant_alleles: 1,
+        susceptible_alleles: 1,
+        key_variants: mockVariants.slice(0, 3),
       },
-      environmental_conditions: {
-        readings_count: mockSensorReadings.length,
-        average_temperature_c: 25.4,
-        average_humidity_pct: 67.2,
-        data_source: "demo",
-      },
-      recommendations: [
-        "MODERATE RISK — Late Blight: Monitor humidity closely. Keep below 80% if possible.",
-        "Current genomic profile shows manageable resistance gene complement.",
-        "Verify Mi-1.2 nematode resistance remains effective — breaks down above 28°C.",
-      ],
-      methodology_note:
-        "DEMO MODE: Data shown is for demonstration purposes. Real analysis connects to the live genomic knowledge base.",
-      scientific_limitations: [
-        "Analysis currently uses curated public genomic datasets for baseline assessment.",
-        "ML models are demonstration models trained on rule-engine labels.",
-        "Risk scores are susceptibility indicators, not guaranteed disease probabilities.",
-      ],
+      disease_profile: mockDiseaseAssociations,
+      risk_assessment: mockRiskAssessment,
+      sensor_summary: { total_readings: mockSensorReadings.length, latest: mockSensorReadings[0] },
+      methodology: "Rule-based + ML-combined genomic interpretation pipeline using curated tomato knowledge base.",
+      limitations: "Prototype using public genomic data. Risk scores are susceptibility indicators, not guaranteed probabilities.",
     };
   }
   return client.get(`/plants/${plantId}/report`);

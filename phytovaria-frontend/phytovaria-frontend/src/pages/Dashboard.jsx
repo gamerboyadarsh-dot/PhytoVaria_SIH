@@ -37,7 +37,22 @@ function DashboardBody() {
     setRiskError(null);
     api
       .getRiskAssessment(analyzedPlant.id)
-      .then(setRisk)
+      .then((r) => {
+        // Normalize real API shape → display shape
+        const normalized = {
+          ...r,
+          overallLabel: r.overallLabel ||
+            (r.risk_level === "high" ? "High" : r.risk_level === "moderate" ? "Medium" : "Low"),
+          traitScores: r.traitScores ||
+            (r.disease_scores || []).map((ds) => ({
+              trait: ds.disease,
+              score: ds.risk_score / 100,
+              label: ds.risk_level === "high" ? "High" : ds.risk_level === "moderate" ? "Medium" : "Low",
+              confidence: ds.confidence || "Low",
+            })),
+        };
+        setRisk(normalized);
+      })
       .catch((e) => setRiskError(e.message));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [analyzedPlant?.id]);
@@ -62,19 +77,21 @@ function DashboardBody() {
   return (
     <div className="space-y-8">
       <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
-        <StatCard label="Registered plants" value={plants.length} icon={Sprout} />
+        <StatCard label="Registered plants" value={plants.length} icon={Sprout} delay="delay-100" />
         <StatCard
           label="Genomes analyzed"
           value={plants.filter((p) => p.status === "analyzed").length}
           icon={Dna}
           tone="accent"
+          delay="delay-200"
         />
         <StatCard
           label="Current risk level"
           value={risk?.overallLabel ?? "—"}
           icon={ShieldAlert}
+          delay="delay-300"
         />
-        <StatCard label="Sensor source" value="Demo" icon={Thermometer} tone="accent" />
+        <StatCard label="Sensor source" value="Demo" icon={Thermometer} tone="accent" delay="delay-400" />
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
@@ -99,7 +116,7 @@ function DashboardBody() {
               >
                 <div
                   className="h-10 w-10 rounded-lg flex items-center justify-center text-white shrink-0"
-                  style={{ backgroundColor: plant.thumbnailColor }}
+                  style={{ backgroundColor: plant.thumbnailColor || `hsl(${(plant.id * 67) % 360}, 45%, 35%)` }}
                 >
                   <Sprout size={18} />
                 </div>
@@ -118,7 +135,7 @@ function DashboardBody() {
           </div>
         </Card>
 
-        <Card>
+        <Card className="delay-500">
           <CardHeader title="Latest susceptibility snapshot" subtitle={analyzedPlant?.name} />
           {!analyzedPlant && (
             <p className="text-sm text-ink-muted">
@@ -132,13 +149,13 @@ function DashboardBody() {
               <RiskBadge label={risk.overallLabel} />
               <div className="space-y-2.5">
                 {risk.traitScores.map((t) => (
-                  <div key={t.trait} className="flex items-center justify-between text-sm">
+                  <div key={t.trait} className="flex items-center justify-between text-sm p-2 rounded-md hover:bg-surface-alt/50 transition-colors">
                     <span className="text-ink-muted truncate pr-3">{t.trait}</span>
                     <RiskBadge label={t.label} size="sm" showIcon={false} />
                   </div>
                 ))}
               </div>
-              <Button as={Link} to="/plants/risk" size="sm" variant="secondary" className="w-full">
+              <Button as={Link} to="/plants/risk" size="sm" variant="secondary" className="w-full mt-2">
                 View full risk breakdown
               </Button>
             </div>

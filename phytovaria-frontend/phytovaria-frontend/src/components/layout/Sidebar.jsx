@@ -10,6 +10,7 @@ import {
   Lightbulb,
   FileText,
 } from "lucide-react";
+import PhytovariaLogo from "../ui/PhytovariaLogo.jsx";
 
 const nav = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -24,12 +25,9 @@ const nav = [
 
 export default function Sidebar() {
   return (
-    <aside className="hidden md:flex md:flex-col w-64 shrink-0 border-r border-border bg-surface h-screen sticky top-0">
-      <div className="flex items-center gap-2 px-6 h-16 border-b border-border">
-        <div className="h-8 w-8 rounded-md bg-primary flex items-center justify-center">
-          <Dna size={17} className="text-white" strokeWidth={2.25} />
-        </div>
-        <span className="font-display font-semibold text-ink tracking-tight">PhytoVaria</span>
+    <aside className="hidden md:flex md:flex-col w-64 shrink-0 glass-panel h-[calc(100vh-2rem)] sticky top-4 ml-4 z-20">
+      <div className="flex items-center gap-2 px-6 h-16 border-b border-border/40">
+        <PhytovariaLogo variant="full" iconClassName="text-primary text-xl" />
       </div>
 
       <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-0.5">
@@ -39,10 +37,10 @@ export default function Sidebar() {
             to={to}
             className={({ isActive }) =>
               clsx(
-                "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
+                "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200",
                 isActive
-                  ? "bg-primary-light text-primary-dark"
-                  : "text-ink-muted hover:bg-surface-alt hover:text-ink"
+                  ? "bg-gradient-to-r from-primary-light to-transparent text-primary-dark shadow-nav-active font-semibold"
+                  : "text-ink-muted hover:bg-surface-alt hover:text-ink hover:translate-x-1"
               )
             }
           >
@@ -52,10 +50,11 @@ export default function Sidebar() {
         ))}
       </nav>
 
-      <div className="px-4 py-4 border-t border-border">
-        <p className="text-[11px] leading-relaxed text-ink-muted">
-          Genomic Intelligence for Healthier Crops. Prototype build — Product Preview.
-        </p>
+      <div className="px-4 py-4 border-t border-border/40">
+        <div className="text-[11px] leading-relaxed text-ink-muted selection:bg-accent-light">
+          <p className="font-medium text-ink/70">Genomic Intelligence for Healthier Crops.</p>
+          <p className="opacity-70 mt-0.5">v1.0.0 Production Build</p>
+        </div>
       </div>
     </aside>
   );

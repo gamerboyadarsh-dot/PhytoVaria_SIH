@@ -2,3 +2,8 @@ fastapi
 uvicorn[standard]
 sqlmodel
 python-multipart
+python-dotenv
+joblib
+scikit-learn
+pandas
+numpy

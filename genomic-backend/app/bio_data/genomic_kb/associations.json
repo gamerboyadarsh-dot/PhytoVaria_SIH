@@ -1,0 +1,362 @@
+{
+  "metadata": {
+    "species": "Solanum lycopersicum",
+    "schema_version": "1.0.0",
+    "curator": "PhytoVaria Genomic Knowledge Base Team (Member 3)",
+    "description": "Evidence-backed gene and variant associations to diseases, pathogens, and environmental interactions."
+  },
+  "associations": [
+    {
+      "association_id": "ASSOC_TOMV_TM2_01",
+      "gene_symbol": "Tm-2^2",
+      "gene_id": "Solyc09g007010",
+      "target_condition": "Tomato Mosaic Virus (ToMV) & Tobacco Mosaic Virus (TMV)",
+      "pathogen_scientific_name": "Tomato mosaic virus / Tobacco mosaic virus (Tobamovirus)",
+      "disease_category": "VIRAL",
+      "effect_type": "CONFERRED_RESISTANCE",
+      "conferred_phenotype": "Durable dominant immunity preventing systemic viral movement and leaf mosaic/necrosis symptoms.",
+      "risk_modifier_direction": "PROTECTIVE",
+      "base_genomic_protection_score": 0.95,
+      "environmental_interaction": "Stable across wide greenhouse temperature ranges (20-32\u00c2\u00b0C); durable against field resistance breakdown.",
+      "evidence_level": "LEVEL_1_DEFINITIVE",
+      "citations": [
+        {
+          "title": "The tomato Tm-2(2) resistance gene: Functional analysis of the LRR domain",
+          "authors": "Lanfermeijer FC, Warmink J, Hille J",
+          "journal": "Molecular Plant-Microbe Interactions",
+          "year": 2005,
+          "pmid": "16167765",
+          "doi": "10.1094/MPMI-18-0947"
+        },
+        {
+          "title": "The products of the tomato mosaic virus resistance gene Tm-2 and the susceptible allele tm-2 differ in only two amino acids",
+          "authors": "Lanfermeijer FC, Dijkhuis J, Sturre MJ, de Haan P, Hille J",
+          "journal": "Transgenic Research",
+          "year": 2003,
+          "pmid": "14759146",
+          "doi": "10.1023/B:TRAG.0000005114.79255.4e"
+        }
+      ]
+    },
+    {
+      "association_id": "ASSOC_TYLCV_TY1_01",
+      "gene_symbol": "Ty-1 / Ty-3",
+      "gene_id": "Solyc06g051190",
+      "target_condition": "Tomato Yellow Leaf Curl Disease (TYLCD)",
+      "pathogen_scientific_name": "Tomato yellow leaf curl virus (Begomovirus)",
+      "disease_category": "VIRAL",
+      "effect_type": "CONFERRED_RESISTANCE",
+      "conferred_phenotype": "Suppresses viral replication and symptom severity through enhanced cytosine methylation and siRNA viral gene silencing.",
+      "risk_modifier_direction": "PROTECTIVE",
+      "base_genomic_protection_score": 0.85,
+      "environmental_interaction": "Vector pressure (Bemisia tabaci whiteflies) at temperatures >28\u00c2\u00b0C increases inoculation load; heterozygous Ty-1/ty-1 shows mild symptoms under extreme whitefly pressure.",
+      "evidence_level": "LEVEL_1_DEFINITIVE",
+      "citations": [
+        {
+          "title": "The tomato DNA virus resistance genes Ty-1 and Ty-3 are alleles of an RNA-dependent RNA polymerase that functions in transcriptional gene silencing",
+          "authors": "Verlaan MG, Szinay D, Hutton SF, de Kock RK, Kormelink R, Visser RG, Scott JW, O'Connell MA, Lindhout P, Finkers R, Wolters AM",
+          "journal": "PLoS Genetics",
+          "year": 2013,
+          "pmid": "23555294",
+          "doi": "10.1371/journal.pgen.1003399"
+        }
+      ]
+    },
+    {
+      "association_id": "ASSOC_FOL_I2_01",
+      "gene_symbol": "I-2",
+      "gene_id": "Solyc11g071430",
+      "target_condition": "Fusarium Vascular Wilt (Race 2)",
+      "pathogen_scientific_name": "Fusarium oxysporum f. sp. lycopersici race 2",
+      "disease_category": "FUNGAL",
+      "effect_type": "CONFERRED_RESISTANCE",
+      "conferred_phenotype": "Monogenic dominant resistance preventing xylem vessel colonization and vascular browning/wilting.",
+      "risk_modifier_direction": "PROTECTIVE",
+      "base_genomic_protection_score": 0.9,
+      "environmental_interaction": "Soil temperatures between 25-28\u00c2\u00b0C highly favor Fusarium infection in susceptible plants; resistant plants maintain vascular integrity.",
+      "evidence_level": "LEVEL_1_DEFINITIVE",
+      "citations": [
+        {
+          "title": "Molecular analysis of the tomato I2 gene for resistance to Fusarium oxysporum",
+          "authors": "Simons G, Groenendijk J, Wijbrandi J, Reijans M, Groenen J, Diergaarde P, Van der Lee T, Bleeker M, Onstenk J, de Both M, Haring M, Mes J, Cornelissen B, Zabeau M, Vos P",
+          "journal": "Science",
+          "year": 1998,
+          "pmid": "9632386",
+          "doi": "10.1126/science.280.5371.1916"
+        },
+        {
+          "title": "The tomato I-2 receptor-like protein confers resistance against race 2 strains of Fusarium oxysporum f. sp. lycopersici",
+          "authors": "Catanzariti AM, Lim GT, Jones DA",
+          "journal": "Molecular Plant Pathology",
+          "year": 2015,
+          "pmid": "25251662",
+          "doi": "10.1111/mpp.12200"
+        }
+      ]
+    },
+    {
+      "association_id": "ASSOC_VERT_VE1_01",
+      "gene_symbol": "Ve1",
+      "gene_id": "Solyc09g005080",
+      "target_condition": "Verticillium Wilt (Race 1)",
+      "pathogen_scientific_name": "Verticillium dahliae race 1 / Verticillium albo-atrum",
+      "disease_category": "FUNGAL",
+      "effect_type": "CONFERRED_RESISTANCE",
+      "conferred_phenotype": "Cell surface LRR-receptor recognition of Ave1 effector; induces PR gene expression and prevents vascular wilt.",
+      "risk_modifier_direction": "PROTECTIVE",
+      "base_genomic_protection_score": 0.92,
+      "environmental_interaction": "Disease manifestation is elevated in cool soils (20-24\u00c2\u00b0C) with moist conditions.",
+      "evidence_level": "LEVEL_1_DEFINITIVE",
+      "citations": [
+        {
+          "title": "Tomato Ve disease resistance genes encode cell surface-like receptors",
+          "authors": "Kawchuk LM, Hachey J, Lynch DR, Kulcsar F, van Rooijen G, Waterer DR, Robertson A, Kokko E, Byers R, Howard RJ, Fischer R, Prufer D",
+          "journal": "Science",
+          "year": 2001,
+          "pmid": "11230698",
+          "doi": "10.1126/science.1058413"
+        },
+        {
+          "title": "Functional analysis of the tomato immune receptor Ve1 through domain swaps with its non-functional homolog Ve2",
+          "authors": "Fradin EF, Zhang Z, Juarez Ayala JC, Castroverde CD, Finkers R, Venema JH, Thomma BP",
+          "journal": "Plant Physiology",
+          "year": 2009,
+          "pmid": "19321708",
+          "doi": "10.1104/pp.109.136762"
+        }
+      ]
+    },
+    {
+      "association_id": "ASSOC_BAC_PTO_01",
+      "gene_symbol": "Pto",
+      "gene_id": "Solyc05g013320",
+      "target_condition": "Bacterial Speck Disease",
+      "pathogen_scientific_name": "Pseudomonas syringae pv. tomato",
+      "disease_category": "BACTERIAL",
+      "effect_type": "CONFERRED_RESISTANCE",
+      "conferred_phenotype": "Rapid hypersensitive response (HR) and local cell death restricting bacterial multiplication in stomata and apoplast.",
+      "risk_modifier_direction": "PROTECTIVE",
+      "base_genomic_protection_score": 0.88,
+      "environmental_interaction": "Prolonged leaf wetness (>90% humidity) and cool temperatures (18-24\u00c2\u00b0C) trigger severe bacterial speck outbreaks in susceptible crops.",
+      "evidence_level": "LEVEL_1_DEFINITIVE",
+      "citations": [
+        {
+          "title": "Map-based cloning of a protein kinase gene conferring disease resistance in tomato",
+          "authors": "Martin GB, Brommonschenkel SH, Chunwongse J, Frary A, Ganal MW, Spivey R, Wu T, Earle ED, Tanksley SD",
+          "journal": "Science",
+          "year": 1993,
+          "pmid": "8248781",
+          "doi": "10.1126/science.8248781"
+        },
+        {
+          "title": "Role of the Pto kinase in bacterial speck disease resistance in tomato",
+          "authors": "Pedley KF, Martin GB",
+          "journal": "Annual Review of Phytopathology",
+          "year": 2003,
+          "pmid": "12730391",
+          "doi": "10.1146/annurev.phyto.41.052002.095642"
+        }
+      ]
+    },
+    {
+      "association_id": "ASSOC_LATEBLIGHT_PH3_01",
+      "gene_symbol": "Ph-3",
+      "gene_id": "Solyc09g092310",
+      "target_condition": "Late Blight",
+      "pathogen_scientific_name": "Phytophthora infestans (Oomycete)",
+      "disease_category": "OOMYCETE",
+      "effect_type": "CONFERRED_RESISTANCE",
+      "conferred_phenotype": "Strong broad-spectrum foliar and fruit protection against multiple aggressive Phytophthora infestans lineages (US-22, US-23, T30-4).",
+      "risk_modifier_direction": "PROTECTIVE",
+      "base_genomic_protection_score": 0.9,
+      "environmental_interaction": "Extreme disease risk under high relative humidity (>85%) and moderate temperatures (15-22\u00c2\u00b0C). Ph-3 markedly dampens sporangial sporulation.",
+      "evidence_level": "LEVEL_1_DEFINITIVE",
+      "citations": [
+        {
+          "title": "The tomato late blight resistance gene Ph-3 encodes a CC-NBS-LRR protein",
+          "authors": "Zhang C, Liu L, Wang X, Vossen J, Li G, Li T, Zheng Z, Gao J, Guo Y, Visser RG, Li C, van der Vossen EA",
+          "journal": "Theoretical and Applied Genetics",
+          "year": 2014,
+          "pmid": "24158498",
+          "doi": "10.1007/s00122-013-2206-0"
+        }
+      ]
+    },
+    {
+      "association_id": "ASSOC_TSWV_SW5B_01",
+      "gene_symbol": "Sw-5b",
+      "gene_id": "Solyc09g098130",
+      "target_condition": "Tomato Spotted Wilt Virus (TSWV)",
+      "pathogen_scientific_name": "Tomato spotted wilt orthotospovirus (Orthotospovirus)",
+      "disease_category": "VIRAL",
+      "effect_type": "CONFERRED_RESISTANCE",
+      "conferred_phenotype": "Immune recognition of viral movement protein NSm triggering systemic protection and preventing lethal necrotic collapse.",
+      "risk_modifier_direction": "PROTECTIVE",
+      "base_genomic_protection_score": 0.94,
+      "environmental_interaction": "Thrips feeding behavior at 24-30\u00c2\u00b0C governs vector transmission; Sw-5b remains robust across typical temperate/tropical greenhouse climates.",
+      "evidence_level": "LEVEL_1_DEFINITIVE",
+      "citations": [
+        {
+          "title": "The broad-spectrum tospovirus resistance gene Sw-5 of tomato is a homolog of the nematode resistance gene Mi",
+          "authors": "Brommonschenkel SH, Frary A, Frary A, Tanksley SD",
+          "journal": "Molecular Plant-Microbe Interactions",
+          "year": 2000,
+          "pmid": "11043474",
+          "doi": "10.1094/MPMI.2000.13.10.1130"
+        },
+        {
+          "title": "The tomato Sw-5b resistance protein recognizes a conserved 21-amino acid peptide in the movement protein of tospoviruses",
+          "authors": "Hallwass M, de Oliveira AS, de Campos Leite R, Inoue-Nagata AK, Dianese EC, Resende RO, Boiteux LS",
+          "journal": "Proceedings of the National Academy of Sciences USA",
+          "year": 2014,
+          "pmid": "25225414",
+          "doi": "10.1073/pnas.1415259111"
+        }
+      ]
+    },
+    {
+      "association_id": "ASSOC_LEAFMOLD_CF9_01",
+      "gene_symbol": "Cf-9",
+      "gene_id": "Solyc01g006550",
+      "target_condition": "Leaf Mold / Cladosporium Leaf Spot",
+      "pathogen_scientific_name": "Passalora fulva (syn. Cladosporium fulvum)",
+      "disease_category": "FUNGAL",
+      "effect_type": "CONFERRED_RESISTANCE",
+      "conferred_phenotype": "Receptor-mediated recognition of Avr9 elicitor protein triggering localized hypersensitive necrotic flecking and fungal arrest.",
+      "risk_modifier_direction": "PROTECTIVE",
+      "base_genomic_protection_score": 0.86,
+      "environmental_interaction": "Leaf mold proliferates rapidly in greenhouse environments with relative humidity >80% and poor air ventilation.",
+      "evidence_level": "LEVEL_1_DEFINITIVE",
+      "citations": [
+        {
+          "title": "Isolation of the tomato Cf-9 gene for resistance to Cladosporium fulvum by transposon tagging",
+          "authors": "Jones DA, Thomas CM, Hammond-Kosack KE, Balint-Kurti PJ, Jones JD",
+          "journal": "Science",
+          "year": 1994,
+          "pmid": "7973631",
+          "doi": "10.1126/science.7973631"
+        }
+      ]
+    },
+    {
+      "association_id": "ASSOC_POWDERY_MLO_01",
+      "gene_symbol": "ol-2 / SlMlo1",
+      "gene_id": "Solyc04g007050",
+      "target_condition": "Powdery Mildew",
+      "pathogen_scientific_name": "Oidium neolycopersici",
+      "disease_category": "FUNGAL",
+      "effect_type": "CONFERRED_RESISTANCE",
+      "conferred_phenotype": "Recessive loss of susceptibility factor preventing fungal appressorium penetration through papilla formation.",
+      "risk_modifier_direction": "PROTECTIVE",
+      "base_genomic_protection_score": 0.88,
+      "environmental_interaction": "Powdery mildew thrives in moderate temperature (20-25\u00c2\u00b0C) and moderate relative humidity (60-80%); mutant ol-2 plants show total immunity.",
+      "evidence_level": "LEVEL_1_DEFINITIVE",
+      "citations": [
+        {
+          "title": "Naturally occurring broad-spectrum powdery mildew resistance in a Central American tomato accession is caused by loss of SlMLO1 function",
+          "authors": "Bai Y, Pavan S, Zheng Z, Zappel NF, Lotti C, De Giovanni C, Ricciardi L, Lindhout P, Visser R, Panstruga R",
+          "journal": "Molecular Plant-Microbe Interactions",
+          "year": 2008,
+          "pmid": "18052880",
+          "doi": "10.1094/MPMI-21-1-0030"
+        }
+      ]
+    },
+    {
+      "association_id": "ASSOC_NEMATODE_MI12_01",
+      "gene_symbol": "Mi-1.2",
+      "gene_id": "Solyc06g008650",
+      "target_condition": "Root-Knot Nematode & Potato Aphid Damage",
+      "pathogen_scientific_name": "Meloidogyne incognita / Macrosiphum euphorbiae",
+      "disease_category": "PEST_NEMATODE",
+      "effect_type": "CONFERRED_RESISTANCE",
+      "conferred_phenotype": "Localized cell death at nematode feeding sites preventing giant cell formation and galling; repels aphid stylet probing.",
+      "risk_modifier_direction": "PROTECTIVE",
+      "base_genomic_protection_score": 0.87,
+      "environmental_interaction": "CRITICAL: Mi-1.2 resistance breaks down and becomes ineffective at soil/ambient temperatures above 28\u00c2\u00b0C (82.4\u00c2\u00b0F).",
+      "evidence_level": "LEVEL_1_DEFINITIVE",
+      "citations": [
+        {
+          "title": "The tomato Mi-1 gene for resistance to root knot nematodes encodes a product with a leucine zipper, nucleotide-binding, and leucine-rich repeat domains",
+          "authors": "Milligan SB, Bodeau J, Yaghoobi J, Kaloshian I, Zabel P, Williamson VM",
+          "journal": "Plant Cell",
+          "year": 1998,
+          "pmid": "9707531",
+          "doi": "10.1105/tpc.10.8.1307"
+        }
+      ]
+    },
+    {
+      "association_id": "ASSOC_RIPENING_GLK2_01",
+      "gene_symbol": "u / SlGLK2",
+      "gene_id": "Solyc10g008160",
+      "target_condition": "Uniform Ripening / Fruit Quality Trait",
+      "pathogen_scientific_name": "N/A (Agronomic/Morphological Trait)",
+      "disease_category": "AGRONOMIC_TRAIT",
+      "effect_type": "AGRONOMIC_TRAIT",
+      "conferred_phenotype": "Eliminates green shoulder in ripening fruit producing uniform color; lowers chloroplast abundance and reduces final sugars/carotenoids by 15-20%.",
+      "risk_modifier_direction": "NEUTRAL",
+      "base_genomic_protection_score": 0.0,
+      "environmental_interaction": "Solar radiation and temperature influence fruit ripening uniformity and color development.",
+      "evidence_level": "LEVEL_1_DEFINITIVE",
+      "citations": [
+        {
+          "title": "Uniform ripening encodes a Golden 2-like transcription factor regulating tomato fruit chloroplast development",
+          "authors": "Powell AL, Nguyen CV, Hill T, Cheng KL, Figueroa-Balderas R, Aktas H, Ashrafi H, Pons C, Fernandez-Munoz R, Vicente A, Lopez-Baltazar J, Barry CS, Liu Y, Chetelat R, Granell A, Van Deynze A, Giovannoni JJ, Bennett AB",
+          "journal": "Science",
+          "year": 2012,
+          "pmid": "22745430",
+          "doi": "10.1126/science.1222218"
+        }
+      ]
+    },
+    {
+      "association_id": "ASSOC_BACSPOT_RX4_01",
+      "gene_symbol": "Rx-4",
+      "gene_id": "Approx_Chr11_Locus",
+      "target_condition": "Bacterial Spot",
+      "pathogen_scientific_name": "Xanthomonas perforans (Race T3)",
+      "disease_category": "BACTERIAL",
+      "effect_type": "CONFERRED_RESISTANCE",
+      "conferred_phenotype": "Hypersensitive reaction (HR) to race T3 strains of Xanthomonas perforans, conferring additive resistance.",
+      "risk_modifier_direction": "PROTECTIVE",
+      "base_genomic_protection_score": 0.85,
+      "environmental_interaction": "Resistance expression is dependent on gene dosage and genetic background; field resistance remains robust but can be overwhelmed by extreme weather (heavy rain).",
+      "evidence_level": "LEVEL_1_DEFINITIVE",
+      "citations": [
+        {
+          "title": "Characterization of hypersensitive resistance to bacterial spot race T3 (Xanthomonas perforans) from tomato accession PI 128216.",
+          "authors": "Robbins MD, Darrigues A, Sim SC, Masud MA, Francis DM",
+          "journal": "Phytopathology",
+          "year": 2009,
+          "pmid": "19671005",
+          "doi": "10.1094/PHYTO-99-9-1037"
+        }
+      ]
+    },
+    {
+      "association_id": "ASSOC_BACSPOT_BS4_01",
+      "gene_symbol": "Bs4",
+      "gene_id": "Solyc03g007050",
+      "target_condition": "Bacterial Spot",
+      "pathogen_scientific_name": "Xanthomonas euvesicatoria",
+      "disease_category": "BACTERIAL",
+      "effect_type": "CONFERRED_RESISTANCE",
+      "conferred_phenotype": "Provides resistance to bacterial spot disease via post-transcriptional RNA silencing and microRNA targeting.",
+      "risk_modifier_direction": "PROTECTIVE",
+      "base_genomic_protection_score": 0.82,
+      "environmental_interaction": "Functional across standard greenhouse temperatures; microRNA binding accessibility regulates response.",
+      "evidence_level": "LEVEL_2_STRONG",
+      "citations": [
+        {
+          "title": "Synonymous sites for accessibility around microRNA binding sites in bacterial spot and speck disease resistance genes of tomato.",
+          "authors": "Sophiarani Y, Chakraborty S",
+          "journal": "Functional & integrative genomics",
+          "year": 2023,
+          "pmid": "37468805",
+          "doi": "10.1007/s10142-023-01178-x"
+        }
+      ]
+    }
+  ]
+}

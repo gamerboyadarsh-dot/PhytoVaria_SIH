@@ -27,7 +27,7 @@ export default function Button({
   return (
     <Component
       className={clsx(
-        "inline-flex items-center justify-center rounded-lg font-medium transition-colors duration-150",
+        "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none",
         "disabled:opacity-50 disabled:cursor-not-allowed",
         variants[variant],
         sizes[size],

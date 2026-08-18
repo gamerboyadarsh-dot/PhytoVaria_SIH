@@ -21,7 +21,7 @@ function UploadBody() {
   const api = useApi();
   const [file, setFile] = useState(null);
   const [dragging, setDragging] = useState(false);
-  const [status, setStatus] = useState("idle"); // idle | uploading | done | error
+  const [status, setStatus] = useState("idle"); // idle | uploading | analyzing | done | error
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const inputRef = useRef(null);
@@ -55,8 +55,19 @@ function UploadBody() {
     setStatus("uploading");
     setError(null);
     try {
-      const res = await api.uploadVcf(selectedPlantId, file);
-      setResult(res);
+      const uploadRes = await api.uploadVcf(selectedPlantId, file);
+      setStatus("analyzing");
+      // Automatically trigger the full analysis pipeline
+      const analysisRes = await api.analyzePlant(selectedPlantId);
+      setResult({
+        filename: file.name,
+        uploadId: uploadRes.id,
+        total_variants: analysisRes?.pipeline?.summary?.total_vcf_variants ?? uploadRes.total_variants,
+        kb_matches: analysisRes?.pipeline?.summary?.exact_knowledge_base_matches ?? uploadRes.kb_matches,
+        unknown: analysisRes?.pipeline?.summary?.unknown_insufficient_evidence_variants ?? 0,
+        risk_level: analysisRes?.risk?.overall_risk_level,
+        risk_score: analysisRes?.risk?.overall_risk_score,
+      });
       setStatus("done");
       await refreshPlants();
     } catch (err) {
@@ -109,10 +120,10 @@ function UploadBody() {
         <div className="flex items-center justify-end gap-3 mt-5">
           <Button
             onClick={handleUpload}
-            disabled={!file || !selectedPlantId}
-            loading={status === "uploading"}
+          loading={status === "uploading" || status === "analyzing"}
+            disabled={!file || !selectedPlantId || status === "uploading" || status === "analyzing"}
           >
-            Upload &amp; parse variants
+            {status === "uploading" ? "Uploading…" : status === "analyzing" ? "Running analysis…" : "Upload & analyze"}
           </Button>
         </div>
       </Card>
@@ -121,15 +132,35 @@ function UploadBody() {
         <Card className="border-risk-low/30">
           <div className="flex items-start gap-3">
             <CheckCircle2 size={20} className="text-risk-low shrink-0 mt-0.5" />
-            <div>
-              <p className="font-medium text-ink">Upload complete</p>
+            <div className="flex-1">
+              <p className="font-medium text-ink">Upload &amp; analysis complete</p>
               <p className="text-sm text-ink-muted mt-1">
-                Parsed <strong>{result.variantCount}</strong> variant record(s) from{" "}
-                <span className="font-mono text-xs">{result.filename}</span>.
+                File: <span className="font-mono text-xs">{result.filename}</span>
               </p>
-              <Button size="sm" className="mt-4" onClick={() => navigate("/plants/analysis")}>
-                View genomic analysis
-              </Button>
+              <div className="grid grid-cols-3 gap-3 mt-3">
+                <div className="bg-surface-alt rounded-lg p-3 text-center">
+                  <p className="text-lg font-bold text-ink">{result.total_variants ?? "—"}</p>
+                  <p className="text-xs text-ink-muted">Total variants</p>
+                </div>
+                <div className="bg-surface-alt rounded-lg p-3 text-center">
+                  <p className="text-lg font-bold text-ink">{result.kb_matches ?? "—"}</p>
+                  <p className="text-xs text-ink-muted">KB matches</p>
+                </div>
+                <div className="bg-surface-alt rounded-lg p-3 text-center">
+                  <p className="text-lg font-bold text-ink">{result.unknown ?? "—"}</p>
+                  <p className="text-xs text-ink-muted">Insufficient evidence</p>
+                </div>
+              </div>
+              {result.risk_level && (
+                <p className="text-sm text-ink-muted mt-3">
+                  Overall risk: <strong className="capitalize">{result.risk_level}</strong>
+                  {result.risk_score != null && ` (${result.risk_score}/100)`}
+                </p>
+              )}
+              <div className="flex gap-3 mt-4">
+                <Button size="sm" variant="secondary" onClick={() => navigate("/plants/analysis")}>View variants</Button>
+                <Button size="sm" onClick={() => navigate("/plants/risk")}>View risk scores</Button>
+              </div>
             </div>
           </div>
         </Card>

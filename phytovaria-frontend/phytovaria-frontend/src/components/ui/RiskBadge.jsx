@@ -10,7 +10,7 @@ import { HelpCircle, AlertTriangle, AlertCircle, CheckCircle2 } from "lucide-rea
 const config = {
   Low: { bg: "bg-risk-low-bg", fg: "text-risk-low", ring: "ring-risk-low/20", Icon: CheckCircle2 },
   Medium: { bg: "bg-risk-medium-bg", fg: "text-risk-medium", ring: "ring-risk-medium/20", Icon: AlertCircle },
-  High: { bg: "bg-risk-high-bg", fg: "text-risk-high", ring: "ring-risk-high/20", Icon: AlertTriangle },
+  High: { bg: "bg-risk-high-bg", fg: "text-risk-high", ring: "ring-risk-high/20 animate-pulse-slow", Icon: AlertTriangle },
   Unknown: {
     bg: "bg-risk-unknown-bg",
     fg: "text-risk-unknown",
