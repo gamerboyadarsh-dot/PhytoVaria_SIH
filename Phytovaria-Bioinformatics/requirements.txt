@@ -1,0 +1,13 @@
+# PhytoVaria - Bioinformatics & Knowledge Base Dependencies
+# Core bioinformatics engine uses Python standard library for maximum cross-platform portability.
+
+# Testing and verification
+pytest>=7.0.0
+
+# Optional performance acceleration (cyvcf2 / pysam if C-compilers available)
+# cyvcf2>=0.30.0
+# pysam>=0.20.0
+
+# Data interchange & validation for integration with Member 2 (FastAPI) and Member 4 (AI/ML)
+pandas>=1.5.0
+pydantic>=2.0.0
