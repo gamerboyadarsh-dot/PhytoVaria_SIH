@@ -54,7 +54,7 @@ export default function Sidebar() {
 
       <div className="px-4 py-4 border-t border-border">
         <p className="text-[11px] leading-relaxed text-ink-muted">
-          Genomic Intelligence for Healthier Crops. Prototype build — SIH Hackathon.
+          Genomic Intelligence for Healthier Crops. Prototype build — Product Preview.
         </p>
       </div>
     </aside>

@@ -3,7 +3,7 @@ import { createContext, useContext, useMemo, useState } from "react";
 const AuthContext = createContext(null);
 
 /**
- * Minimal auth state for the hackathon MVP. Real credential checking
+ * Minimal auth state for the MVP. Real credential checking
  * belongs to Member 2's backend (POST /api/auth/login) — swap the body
  * of login() for a real api.login() call once that endpoint exists.
  * Until then this accepts any non-empty username/password so the rest

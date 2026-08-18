@@ -78,7 +78,7 @@ function ReportBody() {
       </Card>
 
       <p className="text-xs text-ink-muted text-center">
-        This report is a hackathon prototype output. It is not a validated agronomic or diagnostic recommendation.
+        This report is a system output. It is not a validated agronomic or diagnostic recommendation.
       </p>
     </div>
   );

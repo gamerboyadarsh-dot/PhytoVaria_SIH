@@ -1,6 +1,6 @@
 # PhytoVaria Frontend (Member 5)
 
-React + Vite + Tailwind dashboard for the PhytoVaria SIH prototype.
+React + Vite + Tailwind dashboard for the PhytoVaria prototype.
 Ships with a self-contained **Demo Mode** so it's fully clickable before
 the backend/knowledge base/risk engine/ESP32 are wired up.
 
@@ -50,7 +50,7 @@ fallback the brief requires, in case the ESP32 or backend drops on stage.
 
 `src/api/endpoints.js` is the frontend's expected REST contract — treat it
 as a proposal, not a demand; flag anything that needs to change so we
-don't diverge mid-hackathon. Expected routes (all under `VITE_API_BASE_URL`,
+don't diverge mid-development. Expected routes (all under `VITE_API_BASE_URL`,
 default `/api`):
 
 | Method | Path | Purpose |
@@ -110,7 +110,7 @@ tailwind.config.js  maps CSS variable tokens into Tailwind color/font utilities
 - `listDiseaseAssociations` is wired in the API layer but not yet
   rendered on a page — natural next addition to Genomic Analysis once
   Member 3's real evidence records exist.
-- No automated tests yet (hackathon timeline) — manual QA per the list
+- No automated tests yet (initial phase) — manual QA per the list
   above.
 - Sidebar/Topbar are not collapsible on mobile beyond a simple `hidden
   md:flex` breakpoint; revisit if the demo needs to run on a phone.
