@@ -9,7 +9,7 @@ This repository contains the **complete, integrated, end-to-end working prototyp
 ## 🌐 Live Deployments
 
 - **Frontend (Vercel)**: [https://phyto-varia-sih.vercel.app](https://phyto-varia-sih.vercel.app)
-- **Backend (Render)**: [https://phytovaria-backend.onrender.com](https://phytovaria-backend.onrender.com)
+- **Backend (Render)**: [https://phytovaria-sih.onrender.com](https://phytovaria-sih.onrender.com)
 
 ---
 
