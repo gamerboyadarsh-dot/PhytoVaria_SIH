@@ -1,0 +1,53 @@
+============================================================
+CURL COMMANDS -- quick manual tests, no code needed
+============================================================
+
+curl is a command-line tool for sending internet requests.
+Use these to quickly test the backend's sensor endpoint by hand,
+without running the Python script or the ESP32.
+
+Run these in a terminal (Mac/Linux Terminal, or Windows PowerShell/CMD
+with curl installed -- modern Windows 10/11 already includes curl).
+
+------------------------------------------------------------
+1. Basic test -- send one fake reading
+------------------------------------------------------------
+
+curl -X POST http://REPLACE_WITH_BACKEND_IP:8000/sensor ^
+  -H "Content-Type: application/json" ^
+  -d "{\"temperature\": 26.5, \"humidity\": 58.2}"
+
+(On Mac/Linux, use \ instead of ^ for line breaks, or just put it
+all on one line:)
+
+curl -X POST http://REPLACE_WITH_BACKEND_IP:8000/sensor -H "Content-Type: application/json" -d '{"temperature": 26.5, "humidity": 58.2}'
+
+------------------------------------------------------------
+2. What a successful response might look like
+------------------------------------------------------------
+
+You should see something like:
+  {"status": "ok", "id": 123}
+or similar -- confirm the exact expected response shape with Sanidhya.
+
+If you get "Connection refused" -- backend isn't running, or wrong
+IP/port.
+
+If you get a 422 error -- the JSON field names don't match what
+FastAPI expects. Double check "temperature"/"humidity" match his
+schema exactly.
+
+------------------------------------------------------------
+3. Sending a few different test values
+------------------------------------------------------------
+
+curl -X POST http://REPLACE_WITH_BACKEND_IP:8000/sensor -H "Content-Type: application/json" -d '{"temperature": 30.1, "humidity": 70.5}'
+
+curl -X POST http://REPLACE_WITH_BACKEND_IP:8000/sensor -H "Content-Type: application/json" -d '{"temperature": 18.4, "humidity": 40.0}'
+
+------------------------------------------------------------
+IMPORTANT: Before using any of this, ask Sanidhya for:
+  1. The real SERVER_URL (IP address + port + path)
+  2. The exact field names his FastAPI endpoint expects
+  3. What a successful response looks like
+============================================================
